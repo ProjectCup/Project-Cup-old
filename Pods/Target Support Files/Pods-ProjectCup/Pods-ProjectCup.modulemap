@@ -1,0 +1,6 @@
+framework module Pods_ProjectCup {
+  umbrella header "Pods-ProjectCup-umbrella.h"
+
+  export *
+  module * { export * }
+}
