@@ -42,6 +42,7 @@ class RegisterController: UIViewController {
     @objc func handleRegister() {
         var tempDictionary : Dictionary = [kNAME: nameTextField.text!, kEMAIL: emailTextField.text!] as [String : Any]
         
+        
         if passwordTextField.text == confirmpasswordTextField.text! {
             
             FirebaseUser.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!, name: nameTextField.text!) { (error) in
@@ -54,10 +55,14 @@ class RegisterController: UIViewController {
             }
         } else {
             print("pws doesnt match")
+            
+            return
         }
     }
     
     func savetoFirestore(withValues: [String : Any]) {
+        
+        let messagesController = MessagesController()
         
         updateCurrentUserInFirestore(withValues: withValues) { (error) in
             
@@ -69,10 +74,12 @@ class RegisterController: UIViewController {
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            self.present(messagesController, animated: true, completion: nil)
         }
         
     }
+    
+    
     
     var email: String!
     var password: String!
