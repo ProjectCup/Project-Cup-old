@@ -11,7 +11,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
-import FirebaseFirestore
 
 class RegisterController: UIViewController {
     
@@ -40,50 +39,63 @@ class RegisterController: UIViewController {
     
     
     @objc func handleRegister() {
-        var tempDictionary : Dictionary = [kNAME: nameTextField.text!, kEMAIL: emailTextField.text!] as [String : Any]
         
         
-        if passwordTextField.text == confirmpasswordTextField.text! {
-            
-            FirebaseUser.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!, name: nameTextField.text!) { (error) in
-                
-                if error != nil {
-                    return
-                }
-                
-                self.savetoFirestore(withValues: tempDictionary)
-            }
-        } else {
-            print("pws doesnt match")
-            
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            print("Form is not valid")
             return
         }
-    }
-    
-    func savetoFirestore(withValues: [String : Any]) {
         
-        let messagesController = MessagesController()
+        if passwordTextField.text == confirmpasswordTextField.text {
+
         
-        updateCurrentUserInFirestore(withValues: withValues) { (error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
-                
-                DispatchQueue.main.async {
-                    print(error!.localizedDescription)
-                }
+                print(error!)
                 return
             }
             
-            self.present(messagesController, animated: true, completion: nil)
+            guard let uid = user?.user.uid else {
+                return
+            }
+            
+            let values = ["name": name, "email": email]
+            //successfully authenticated user
+            self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
+
+        })
+            
+        } else {
+            print("pws dont match")
+            return
         }
-        
     }
+        
+            fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
+                let ref = Database.database().reference()
+                let usersReference = ref.child("users").child(uid)
+                let messagesController = MessagesController()
+                
+                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    
+                    if err != nil {
+                        print(err!)
+                        return
+                    }
+                    
+                    //            self.messagesController?.fetchUserAndSetupNavBarTitle()
+                    //            self.messagesController?.navigationItem.title = values["name"] as? String
+//                    let user = User(dictionary: values)
+//                    self.messagesController?.setupNavBarWithUser(user)
+                 
+                    self.present(messagesController, animated: true, completion: nil)
+                })
+            }
+            
+        
     
     
-    
-    var email: String!
-    var password: String!
-    var name: String!
     
     let nameTextField: UITextField = {
         let tf = UITextField()
@@ -136,15 +148,26 @@ class RegisterController: UIViewController {
         return tf
     }()
     
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "CUP logo")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.gray
         
+        view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
         view.addSubview(RegisterButton)
         
+        setupProfileImageView()
         setupInputsContainerView()
         setupRegisterButton()
     }
@@ -154,6 +177,14 @@ class RegisterController: UIViewController {
     var emailTextFieldHeightAnchor: NSLayoutConstraint?
     var passwordTextFieldHeightAnchor: NSLayoutConstraint?
     var confirmpasswordTextFieldHeightAnchor: NSLayoutConstraint?
+    
+    func setupProfileImageView() {
+        //need x, y, width, height constraints
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
     
     func setupInputsContainerView() {
         //need x, y, width, height constraints
