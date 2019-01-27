@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
-import FirebaseFirestore
 
 class LoginController: UIViewController {
     
@@ -53,7 +52,7 @@ class LoginController: UIViewController {
     @objc func gotoRegister() {
         
         let registerController = RegisterController()
-        present(registerController, animated: true, completion: nil)
+            present(registerController, animated: true, completion: nil)
     }
     
     @objc func handleLogin() {

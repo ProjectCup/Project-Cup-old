@@ -75,7 +75,7 @@ class RegisterController: UIViewController {
             fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
                 let ref = Database.database().reference()
                 let usersReference = ref.child("users").child(uid)
-                let messagesController = MessagesController()
+                let messagesController = UINavigationController(rootViewController: MessagesController())
                 
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                     
