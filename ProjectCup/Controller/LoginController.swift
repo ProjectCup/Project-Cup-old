@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class LoginController: UIViewController {
     
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -22,7 +23,7 @@ class LoginController: UIViewController {
         return view
     }()
     
-    var loginRegisterButton: UIButton = {
+    var LoginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
         button.setTitle("Login", for: UIControl.State())
@@ -71,8 +72,9 @@ class LoginController: UIViewController {
             
             //successfully logged in our user
             
-            
-            self.dismiss(animated: true, completion: nil)
+            let messagesController = UINavigationController(rootViewController: MessagesController())
+            self.present(messagesController, animated: true, completion: nil)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             
         })
         
@@ -117,12 +119,12 @@ class LoginController: UIViewController {
         
         view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
-        view.addSubview(loginRegisterButton)
+        view.addSubview(LoginButton)
         view.addSubview(RegisterButton)
         
         setupProfileImageView()
         setupInputsContainerView()
-        setupLoginRegisterButton()
+        setupLoginButton()
         setupRegisterButton()
         
     }
@@ -177,19 +179,19 @@ class LoginController: UIViewController {
         passwordTextFieldHeightAnchor?.isActive = true
     }
     
-    func setupLoginRegisterButton() {
+    func setupLoginButton() {
         //need x, y, width, height constraints
-        loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
-        loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        LoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        LoginButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        LoginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        LoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func setupRegisterButton() {
         
         RegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        RegisterButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
-        RegisterButton.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+        RegisterButton.topAnchor.constraint(equalTo: LoginButton.bottomAnchor, constant: 12).isActive = true
+        RegisterButton.widthAnchor.constraint(equalTo: LoginButton.widthAnchor).isActive = true
         RegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     

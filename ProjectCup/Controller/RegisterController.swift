@@ -84,11 +84,6 @@ class RegisterController: UIViewController {
                         return
                     }
                     
-                    //            self.messagesController?.fetchUserAndSetupNavBarTitle()
-                    //            self.messagesController?.navigationItem.title = values["name"] as? String
-//                    let user = User(dictionary: values)
-//                    self.messagesController?.setupNavBarWithUser(user)
-                 
                     self.present(messagesController, animated: true, completion: nil)
                 })
             }

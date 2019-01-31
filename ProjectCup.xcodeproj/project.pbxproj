@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5AD5BD955E0483DBDE8329DD /* Pods_ProjectCup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258A6484111DF757C95F63A4 /* Pods_ProjectCup.framework */; };
 		7B1BAA2764F6E0D8009433C1 /* Pods_ProjectCupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE08F0D286D2E5960B63C640 /* Pods_ProjectCupUITests.framework */; };
+		BB17C3EF21FE5FCC006C9623 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C3EE21FE5FCC006C9623 /* SettingController.swift */; };
+		BB17C3F821FF6619006C9623 /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C3F721FF6619006C9623 /* CellController.swift */; };
 		BB3002DD21F42F50009D7519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3002DC21F42F50009D7519 /* AppDelegate.swift */; };
 		BB3002DF21F42F50009D7519 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3002DE21F42F50009D7519 /* LoginController.swift */; };
 		BB3002E421F42F52009D7519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB3002E321F42F52009D7519 /* Assets.xcassets */; };
@@ -17,15 +19,11 @@
 		BB3002FD21F42F52009D7519 /* ProjectCupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3002FC21F42F52009D7519 /* ProjectCupUITests.swift */; };
 		BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30030A21F42F91009D7519 /* RegisterController.swift */; };
 		BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30030D21F430D1009D7519 /* MessagesController.swift */; };
-		BB30031121F4310F009D7519 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031021F4310F009D7519 /* CollectionReference.swift */; };
-		BB30031321F43130009D7519 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031221F43130009D7519 /* Constants.swift */; };
-		BB30031521F43159009D7519 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031421F43159009D7519 /* FirebaseUser.swift */; };
-		BB30031721F43175009D7519 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031621F43175009D7519 /* HelperFunctions.swift */; };
 		BB30031921F43266009D7519 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB30031821F43266009D7519 /* GoogleService-Info.plist */; };
-		BB30031B21F7BC73009D7519 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031A21F7BC73009D7519 /* SettingController.swift */; };
 		BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031C21FD3B5C009D7519 /* NewMessageController.swift */; };
 		BB30031F21FD3BDE009D7519 /* testNewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031E21FD3BDE009D7519 /* testNewMessageController.swift */; };
 		BB30032221FD3DD4009D7519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032121FD3DD4009D7519 /* User.swift */; };
+		BB30032521FD589F009D7519 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032421FD589E009D7519 /* Cells.swift */; };
 		DA4EA3A6CEADCA64E403993D /* Pods_ProjectCupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +51,8 @@
 		94A537E217ED2D897711F768 /* Pods-ProjectCupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCupTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCupTests/Pods-ProjectCupTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1C5EDED0073A12BA3AB754A /* Pods-ProjectCupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCupUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCupUITests/Pods-ProjectCupUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B59621434E99519BA165D8C3 /* Pods-ProjectCupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCupTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCupTests/Pods-ProjectCupTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB17C3EE21FE5FCC006C9623 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		BB17C3F721FF6619006C9623 /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 		BB3002D921F42F50009D7519 /* ProjectCup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3002DC21F42F50009D7519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB3002DE21F42F50009D7519 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -67,15 +67,11 @@
 		BB3002FE21F42F52009D7519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB30030A21F42F91009D7519 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		BB30030D21F430D1009D7519 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
-		BB30031021F4310F009D7519 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
-		BB30031221F43130009D7519 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		BB30031421F43159009D7519 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
-		BB30031621F43175009D7519 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		BB30031821F43266009D7519 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BB30031A21F7BC73009D7519 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		BB30031C21FD3B5C009D7519 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		BB30031E21FD3BDE009D7519 /* testNewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testNewMessageController.swift; sourceTree = "<group>"; };
 		BB30032121FD3DD4009D7519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BB30032421FD589E009D7519 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cells.swift; path = ProjectCup/Controller/Cells.swift; sourceTree = SOURCE_ROOT; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE08F0D286D2E5960B63C640 /* Pods_ProjectCupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +143,7 @@
 		BB3002DB21F42F50009D7519 /* ProjectCup */ = {
 			isa = PBXGroup;
 			children = (
+				BB30032321FD5813009D7519 /* View */,
 				BB30032021FD3DC7009D7519 /* Model */,
 				BB30030C21F4302A009D7519 /* Controller */,
 				BB3002DC21F42F50009D7519 /* AppDelegate.swift */,
@@ -154,7 +151,6 @@
 				BB3002E521F42F52009D7519 /* LaunchScreen.storyboard */,
 				BB3002E821F42F52009D7519 /* Info.plist */,
 				BB30031821F43266009D7519 /* GoogleService-Info.plist */,
-				BB30030F21F430EE009D7519 /* Source Code */,
 			);
 			path = ProjectCup;
 			sourceTree = "<group>";
@@ -181,24 +177,14 @@
 			isa = PBXGroup;
 			children = (
 				BB30030A21F42F91009D7519 /* RegisterController.swift */,
-				BB30031A21F7BC73009D7519 /* SettingController.swift */,
 				BB3002DE21F42F50009D7519 /* LoginController.swift */,
 				BB30030D21F430D1009D7519 /* MessagesController.swift */,
 				BB30031C21FD3B5C009D7519 /* NewMessageController.swift */,
 				BB30031E21FD3BDE009D7519 /* testNewMessageController.swift */,
+				BB17C3EE21FE5FCC006C9623 /* SettingController.swift */,
+				BB17C3F721FF6619006C9623 /* CellController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		BB30030F21F430EE009D7519 /* Source Code */ = {
-			isa = PBXGroup;
-			children = (
-				BB30031021F4310F009D7519 /* CollectionReference.swift */,
-				BB30031221F43130009D7519 /* Constants.swift */,
-				BB30031421F43159009D7519 /* FirebaseUser.swift */,
-				BB30031621F43175009D7519 /* HelperFunctions.swift */,
-			);
-			path = "Source Code";
 			sourceTree = "<group>";
 		};
 		BB30032021FD3DC7009D7519 /* Model */ = {
@@ -207,6 +193,14 @@
 				BB30032121FD3DD4009D7519 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BB30032321FD5813009D7519 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB30032421FD589E009D7519 /* Cells.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CF583238CD142F6AFA5A20C9 /* Frameworks */ = {
@@ -482,18 +476,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB30031321F43130009D7519 /* Constants.swift in Sources */,
-				BB30031721F43175009D7519 /* HelperFunctions.swift in Sources */,
 				BB3002DF21F42F50009D7519 /* LoginController.swift in Sources */,
 				BB3002DD21F42F50009D7519 /* AppDelegate.swift in Sources */,
 				BB30032221FD3DD4009D7519 /* User.swift in Sources */,
-				BB30031521F43159009D7519 /* FirebaseUser.swift in Sources */,
+				BB30032521FD589F009D7519 /* Cells.swift in Sources */,
 				BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */,
+				BB17C3EF21FE5FCC006C9623 /* SettingController.swift in Sources */,
 				BB30031F21FD3BDE009D7519 /* testNewMessageController.swift in Sources */,
 				BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */,
-				BB30031121F4310F009D7519 /* CollectionReference.swift in Sources */,
 				BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */,
-				BB30031B21F7BC73009D7519 /* SettingController.swift in Sources */,
+				BB17C3F821FF6619006C9623 /* CellController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
