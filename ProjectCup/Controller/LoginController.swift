@@ -53,7 +53,7 @@ class LoginController: UIViewController {
     @objc func gotoRegister() {
         
         let registerController = RegisterController()
-            present(registerController, animated: true, completion: nil)
+        navigationController?.pushViewController(registerController, animated: true)
     }
     
     @objc func handleLogin() {
@@ -72,9 +72,7 @@ class LoginController: UIViewController {
             
             //successfully logged in our user
             
-            let messagesController = UINavigationController(rootViewController: MessagesController())
-            self.present(messagesController, animated: true, completion: nil)
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            self.finishLoggingIn()
             
         })
         
@@ -197,6 +195,18 @@ class LoginController: UIViewController {
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func finishLoggingIn() {
+
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        
+        mainNavigationController.viewControllers = [MessagesController()]
+        
+        UserDefaults.standard.setIsLoggedIn(value: true)
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 

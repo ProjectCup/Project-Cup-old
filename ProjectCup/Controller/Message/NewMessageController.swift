@@ -12,7 +12,6 @@ import Firebase
 class NewMessageController: UITableViewController {
     
     let cellId = "cellId"
-    
     var users = [User]()
     
     override func viewDidLoad() {
@@ -25,37 +24,36 @@ class NewMessageController: UITableViewController {
         fetchUser()
     }
     
+    
     func fetchUser() {
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User(dictionary: dictionary)
+                user.id = snapshot.key
                 self.users.append(user)
-                print ("user found")
                 
                 //this will crash because of background thread, so lets use dispatch_async to fix
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
             }
-            
         }, withCancel: nil)
     }
+    
     
     @objc func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // let use a hack for now, we actually need to dequeue our cells for memory efficiency
-        //        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellId)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
@@ -64,24 +62,20 @@ class NewMessageController: UITableViewController {
         return cell
     }
     
-}
-
-class UserCell: UITableViewCell {
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    var messagesController: MessagesController?
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            print("Dismiss completed")
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatControllerForUser(user)
+        }
     }
     
 }
-
-
-
-
-
-
-
-

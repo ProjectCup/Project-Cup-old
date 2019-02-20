@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
+import FirebaseAuth
 
 class RegisterController: UIViewController {
     
@@ -60,7 +61,7 @@ class RegisterController: UIViewController {
                 return
             }
             
-            let values = ["name": name, "email": email]
+            let values = ["name": name, "email": email, "password": password]
             //successfully authenticated user
             self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
 
@@ -72,11 +73,11 @@ class RegisterController: UIViewController {
         }
     }
         
-            fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
-                let ref = Database.database().reference()
-                let usersReference = ref.child("users").child(uid)
-                let messagesController = UINavigationController(rootViewController: MessagesController())
-                
+        fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
+            let ref = Database.database().reference()
+            let usersReference = ref.child("users").child(uid)
+            let messageController = UINavigationController(rootViewController: MessagesController())
+
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                     
                     if err != nil {
@@ -84,13 +85,10 @@ class RegisterController: UIViewController {
                         return
                     }
                     
-                    self.present(messagesController, animated: true, completion: nil)
+                    self.present(messageController, animated: true, completion: nil)
                 })
             }
-            
-        
-    
-    
+
     
     let nameTextField: UITextField = {
         let tf = UITextField()
