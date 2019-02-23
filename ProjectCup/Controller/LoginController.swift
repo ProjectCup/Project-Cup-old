@@ -18,7 +18,7 @@ class LoginController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         return view
     }()
@@ -30,6 +30,7 @@ class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
         
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         
@@ -43,6 +44,7 @@ class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
         
         button.addTarget(self, action: #selector(gotoRegister), for: .touchUpInside)
         

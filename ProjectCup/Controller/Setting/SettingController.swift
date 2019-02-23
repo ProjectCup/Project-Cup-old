@@ -27,6 +27,7 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
         
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         
