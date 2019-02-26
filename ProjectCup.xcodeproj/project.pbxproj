@@ -16,7 +16,6 @@
 		BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D29C7220E32A000202DE0 /* UserCell.swift */; };
 		BB0D29CA220E32CE00202DE0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D29C9220E32CE00202DE0 /* Message.swift */; };
 		BB17C3EF21FE5FCC006C9623 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C3EE21FE5FCC006C9623 /* SettingController.swift */; };
-		BB17C4002206AE9D006C9623 /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB17C3FF2206AE9D006C9623 /* setting.plist */; };
 		BB17C40422079153006C9623 /* TermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C40322079153006C9623 /* TermsController.swift */; };
 		BB17C40922086658006C9623 /* SurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C40822086658006C9623 /* SurveyController.swift */; };
 		BB17C40B220885D8006C9623 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17C40A220885D8006C9623 /* UserDefault.swift */; };
@@ -33,8 +32,9 @@
 		BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031C21FD3B5C009D7519 /* NewMessageController.swift */; };
 		BB30031F21FD3BDE009D7519 /* testNewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031E21FD3BDE009D7519 /* testNewMessageController.swift */; };
 		BB30032221FD3DD4009D7519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032121FD3DD4009D7519 /* User.swift */; };
-		BB30032521FD589F009D7519 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032421FD589E009D7519 /* SettingCell.swift */; };
 		BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F94D1220F87530056F5DB /* ChangeController.swift */; };
+		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
+		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
 		DA4EA3A6CEADCA64E403993D /* Pods_ProjectCupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,6 @@
 		BB0D29C7220E32A000202DE0 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		BB0D29C9220E32CE00202DE0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BB17C3EE21FE5FCC006C9623 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
-		BB17C3FF2206AE9D006C9623 /* setting.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = setting.plist; sourceTree = "<group>"; };
 		BB17C40322079153006C9623 /* TermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsController.swift; sourceTree = "<group>"; };
 		BB17C40822086658006C9623 /* SurveyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyController.swift; sourceTree = "<group>"; };
 		BB17C40A220885D8006C9623 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
@@ -92,9 +91,10 @@
 		BB30031C21FD3B5C009D7519 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		BB30031E21FD3BDE009D7519 /* testNewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testNewMessageController.swift; sourceTree = "<group>"; };
 		BB30032121FD3DD4009D7519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BB30032421FD589E009D7519 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingCell.swift; path = ProjectCup/Controller/SettingCell.swift; sourceTree = SOURCE_ROOT; };
 		BB8F94D1220F87530056F5DB /* ChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
+		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
+		C86E8AAE22246D7D0005E54D /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE08F0D286D2E5960B63C640 /* Pods_ProjectCupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,7 +167,6 @@
 		BB17C4012206AEA2006C9623 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				BB17C3FF2206AE9D006C9623 /* setting.plist */,
 				BB17C40A220885D8006C9623 /* UserDefault.swift */,
 			);
 			path = Resource;
@@ -232,6 +231,7 @@
 		BB30030C21F4302A009D7519 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
 				BB0D29C0220B063800202DE0 /* Setting */,
 				BB30030A21F42F91009D7519 /* RegisterController.swift */,
@@ -253,11 +253,19 @@
 		BB30032321FD5813009D7519 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BB30032421FD589E009D7519 /* SettingCell.swift */,
 				BB0D29C5220E328400202DE0 /* ChatMessageCell.swift */,
 				BB0D29C7220E32A000202DE0 /* UserCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C86E8AB322246DEA0005E54D /* Intro_pages */ = {
+			isa = PBXGroup;
+			children = (
+				C86E8AAD22246D7C0005E54D /* SwipingController.swift */,
+				C86E8AAE22246D7D0005E54D /* PageCell.swift */,
+			);
+			path = Intro_pages;
 			sourceTree = "<group>";
 		};
 		CF583238CD142F6AFA5A20C9 /* Frameworks */ = {
@@ -380,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB3002E721F42F52009D7519 /* LaunchScreen.storyboard in Resources */,
-				BB17C4002206AE9D006C9623 /* setting.plist in Resources */,
 				BB30031921F43266009D7519 /* GoogleService-Info.plist in Resources */,
 				BB3002E421F42F52009D7519 /* Assets.xcassets in Resources */,
 			);
@@ -537,8 +544,8 @@
 				BB3002DF21F42F50009D7519 /* LoginController.swift in Sources */,
 				BB3002DD21F42F50009D7519 /* AppDelegate.swift in Sources */,
 				BB0D29C6220E328400202DE0 /* ChatMessageCell.swift in Sources */,
+				C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */,
 				BB30032221FD3DD4009D7519 /* User.swift in Sources */,
-				BB30032521FD589F009D7519 /* SettingCell.swift in Sources */,
 				BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */,
 				BB17C40B220885D8006C9623 /* UserDefault.swift in Sources */,
 				BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */,
@@ -554,6 +561,7 @@
 				BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */,
 				BB17C40D2208875F006C9623 /* MainNavigationController.swift in Sources */,
 				BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */,
+				C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ struct Question {
     var selectedAnswerIndex: Int?
 }
 
-var questionsList: [Question] = [Question(questionString: "How do you feel right now?", answers: ["Sad", "Angery","Happy", "Lonely"], selectedAnswerIndex: nil), Question(questionString: "What are you thinking right now?", answers: ["I don't konw", "I love/hate school", "I love/hate my work", "I need to talk with someone"], selectedAnswerIndex: nil), Question(questionString: "Are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to tell"], selectedAnswerIndex: nil)]
+var questionsList: [Question] = [Question(questionString: "How do you feel right now?", answers: ["Very good", "Good","Moderate", "Bad", "Very Bad"], selectedAnswerIndex: nil), Question(questionString: "What would you like to talk about today?", answers: ["School", "Work", "Family", "Friends", "Relationships", "Other", "Just want to chat" ], selectedAnswerIndex: nil), Question(questionString: "Are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to say"], selectedAnswerIndex: nil)]
 
 class SurveyController: UITableViewController {
     
@@ -79,7 +79,6 @@ class SurveyController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let index = navigationController?.viewControllers.index(of:self){
             questionsList[index].selectedAnswerIndex = indexPath.item
-            
             if index < questionsList.count - 1{
                 let questionController = SurveyController()
                 navigationController?.pushViewController(questionController, animated: true)
@@ -96,13 +95,20 @@ class ResultsController: UIViewController{
     
     let resultsLabel: UILabel = {
         let label = UILabel()
-        label.text = "Thank you for filling out this survey"
+        label.text = "Please Eneter Your Name"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
+    let nameField: UITextField = {
+        let field = UITextField()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.placeholder = "Name"
+        field.clearsOnBeginEditing = true
+        return field
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,25 +121,34 @@ class ResultsController: UIViewController{
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0" : resultsLabel]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0" : resultsLabel]))
         
+        view.addSubview(nameField)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-90-[v0]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": nameField]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-160-[v0]-160-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": nameField]))
+        
     }
     
     @objc func done(){
-//        navigationController?.popToRootViewController(animated: true)
-//                let ref = Database.database().reference()
-//                let usersReference = ref.child("users").child(uid)
-//                let messagesController = UINavigationController(rootViewController: MessagesController())
-//
-//                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-//
-//                    if err != nil {
-//                        print(err!)
-//                        return
-//                    }
-//
-//                    self.present(messagesController, animated: true, completion: nil)
-//                })
+        guard let name = nameField.text, !name.isEmpty else{
+            print("The name field is Empty")
+            return
+        }
         
-        print("done")
+        let regController = RegisterController()
+        regController.userAnswer = getAnswers()
+        regController.userName = name
+        navigationController?.pushViewController(regController, animated: true)
+        
+    }
+    
+    fileprivate func getAnswers() -> [Int]{
+        
+        var answerList : [Int] = []
+        
+        for q in questionsList{
+            answerList.append(q.selectedAnswerIndex!)
+        }
+        
+        return answerList
     }
     
 }

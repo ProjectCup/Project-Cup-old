@@ -37,25 +37,24 @@ class LoginController: UIViewController {
         return button
     }()
     
-    var RegisterButton: UIButton = {
+    var BackButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
-        button.setTitle("Register", for: UIControl.State())
+        button.setTitle("Back", for: UIControl.State())
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 25
         
-        button.addTarget(self, action: #selector(gotoRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
         return button
     }()
     
     
-    @objc func gotoRegister() {
-        
-        let registerController = RegisterController()
-        navigationController?.pushViewController(registerController, animated: true)
+    @objc func goBack() {
+
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func handleLogin() {
@@ -120,12 +119,12 @@ class LoginController: UIViewController {
         view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
         view.addSubview(LoginButton)
-        view.addSubview(RegisterButton)
+        view.addSubview(BackButton)
         
         setupProfileImageView()
         setupInputsContainerView()
         setupLoginButton()
-        setupRegisterButton()
+        setupBackButton()
         
     }
     
@@ -187,12 +186,12 @@ class LoginController: UIViewController {
         LoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func setupRegisterButton() {
+    func setupBackButton() {
         
-        RegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        RegisterButton.topAnchor.constraint(equalTo: LoginButton.bottomAnchor, constant: 12).isActive = true
-        RegisterButton.widthAnchor.constraint(equalTo: LoginButton.widthAnchor).isActive = true
-        RegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        BackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        BackButton.topAnchor.constraint(equalTo: LoginButton.bottomAnchor, constant: 12).isActive = true
+        BackButton.widthAnchor.constraint(equalTo: LoginButton.widthAnchor).isActive = true
+        BackButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -200,15 +199,15 @@ class LoginController: UIViewController {
     }
     
     func finishLoggingIn() {
-
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
-        
-        mainNavigationController.viewControllers = [MessagesController()]
+//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+//
+//        mainNavigationController.viewControllers = [MessagesController()]
         
         UserDefaults.standard.setIsLoggedIn(value: true)
         
-        dismiss(animated: true, completion: nil)
+        let messagesController = MessagesController()
+        navigationController?.viewControllers = [messagesController]
     }
 }
 

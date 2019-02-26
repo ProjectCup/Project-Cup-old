@@ -15,6 +15,8 @@ import FirebaseAuth
 
 class RegisterController: UIViewController {
     
+    var userAnswer : [Int] = []
+    var userName : String = ""
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -44,7 +46,8 @@ class RegisterController: UIViewController {
     @objc func handleRegister() {
         
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+        guard let email = emailTextField.text, let password = passwordTextField.text//, let name = nameTextField.text
+            else {
             print("Form is not valid")
             return
         }
@@ -63,7 +66,7 @@ class RegisterController: UIViewController {
                 return
             }
             
-            let values = ["name": name, "email": email, "password": password]
+            let values = ["name": self.userName, "email": email, "password": password, "user_answer": self.userAnswer] as [String : Any]
             //successfully authenticated user
             self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
 
@@ -89,22 +92,31 @@ class RegisterController: UIViewController {
                     
                     self.present(messageController, animated: true, completion: nil)
                 })
-            }
+            
+            let answerReference = ref.child("answers").child("\(self.userAnswer[1])")
+            answerReference.updateChildValues( ["user_id": uid], withCompletionBlock: { (err, ref) in
+                if err != nil{
+                    print(err!)
+                    return
+                }
+                })
+            
+        }
 
     
-    let nameTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "NickName"
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        return tf
-    }()
+//    let nameTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.placeholder = "NickName"
+//        tf.translatesAutoresizingMaskIntoConstraints = false
+//        return tf
+//    }()
     
-    let nameSeparatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.gray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    let nameSeparatorView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = UIColor.gray
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     let emailTextField: UITextField = {
         let tf = UITextField()
@@ -189,8 +201,8 @@ class RegisterController: UIViewController {
         inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 250)
         inputsContainerViewHeightAnchor?.isActive = true
         
-        inputsContainerView.addSubview(nameTextField)
-        inputsContainerView.addSubview(nameSeparatorView)
+//        inputsContainerView.addSubview(nameTextField)
+//        inputsContainerView.addSubview(nameSeparatorView)
         inputsContainerView.addSubview(emailTextField)
         inputsContainerView.addSubview(emailSeparatorView)
         inputsContainerView.addSubview(passwordTextField)
@@ -198,22 +210,22 @@ class RegisterController: UIViewController {
         inputsContainerView.addSubview(confirmpasswordTextField)
         
         //need x, y, width, height constraints
-        nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
+//        nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
+//        nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
+//
+//        nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+//        nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
+//        nameTextFieldHeightAnchor?.isActive = true
         
-        nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
-        nameTextFieldHeightAnchor?.isActive = true
-        
-        //need x, y, width, height constraints
-        nameSeparatorView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
-        nameSeparatorView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
-        nameSeparatorView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        nameSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+//        //need x, y, width, height constraints
+//        nameSeparatorView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
+//        nameSeparatorView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
+//        nameSeparatorView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+//        nameSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         //need x, y, width, height constraints
         emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
         
         emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         

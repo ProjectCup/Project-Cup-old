@@ -192,7 +192,6 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         } catch let logoutError {
             print(logoutError)
         }
-        
         self.finishLogout()
     }
     
@@ -230,6 +229,9 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func finishLogout() {
+        //change locally the login status of the user
+        UserDefaults.standard.set(false, forKey: "status")
+        
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
         
