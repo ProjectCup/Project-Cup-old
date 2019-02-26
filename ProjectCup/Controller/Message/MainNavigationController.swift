@@ -19,7 +19,7 @@ class MainNavigationController: UINavigationController {
             let messagesController = MessagesController()
             viewControllers = [messagesController]
         } else {
-            perform(#selector(showLoginController), with: nil, afterDelay: 0.01)
+            perform(#selector(showIntroPages), with: nil, afterDelay: 0.01)
         }
         
     }
@@ -27,13 +27,13 @@ class MainNavigationController: UINavigationController {
         return UserDefaults.standard.isLoggedIn()
     }
     
-    @objc func showLoginController() {
-        let loginController = LoginController()
-        present(loginController, animated: true, completion: {
-            //perhaps we'll do something here later
-        })
+    @objc func showIntroPages(){
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let swipingController = UINavigationController(rootViewController: SwipingController(collectionViewLayout: layout))
+        swipingController.setNavigationBarHidden(true, animated: false)
+        present(swipingController, animated: true, completion: nil)
     }
-    
     
 }
 
