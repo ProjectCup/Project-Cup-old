@@ -62,6 +62,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         
         let surveyController = UINavigationController(rootViewController: SurveyController())
         self.present(surveyController, animated: true, completion: nil)
+        surveyController.setNavigationBarHidden(false, animated: false)
     }
     
     

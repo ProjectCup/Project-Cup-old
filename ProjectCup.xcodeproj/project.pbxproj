@@ -234,9 +234,6 @@
 				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
 				BB0D29C0220B063800202DE0 /* Setting */,
-				BB30030A21F42F91009D7519 /* RegisterController.swift */,
-				BB3002DE21F42F50009D7519 /* LoginController.swift */,
-				BB17C40822086658006C9623 /* SurveyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,6 +261,9 @@
 			children = (
 				C86E8AAD22246D7C0005E54D /* SwipingController.swift */,
 				C86E8AAE22246D7D0005E54D /* PageCell.swift */,
+				BB17C40822086658006C9623 /* SurveyController.swift */,
+				BB30030A21F42F91009D7519 /* RegisterController.swift */,
+				BB3002DE21F42F50009D7519 /* LoginController.swift */,
 			);
 			path = Intro_pages;
 			sourceTree = "<group>";

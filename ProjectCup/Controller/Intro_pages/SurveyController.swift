@@ -34,13 +34,17 @@ class SurveyController: UITableViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.barTintColor = UIColor(r: 171, g: 234, b: 190)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self,  action: #selector(goback))
         
         tableView.register(AnswerCell.self, forCellReuseIdentifier: cellId)
         tableView.register(QuestionHeader.self, forHeaderFooterViewReuseIdentifier: headerId)
         
         tableView.sectionHeaderHeight = 100
         tableView.tableFooterView = UIView()
+    }
+    
+    @objc func goback() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,7 +99,7 @@ class ResultsController: UIViewController{
     
     let resultsLabel: UILabel = {
         let label = UILabel()
-        label.text = "Please Eneter Your Name"
+        label.text = "Please Enter Your Name Here"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)

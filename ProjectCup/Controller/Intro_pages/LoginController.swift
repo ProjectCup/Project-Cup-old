@@ -45,15 +45,23 @@ class LoginController: UIViewController {
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 25
-        
+
         button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        
+
         return button
     }()
-    
+
     
     @objc func goBack() {
 
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let swipingController = SwipingController(collectionViewLayout: layout)
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        
+        mainNavigationController.viewControllers = [swipingController]
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -187,7 +195,7 @@ class LoginController: UIViewController {
     }
     
     func setupBackButton() {
-        
+
         BackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         BackButton.topAnchor.constraint(equalTo: LoginButton.bottomAnchor, constant: 12).isActive = true
         BackButton.widthAnchor.constraint(equalTo: LoginButton.widthAnchor).isActive = true
@@ -199,15 +207,14 @@ class LoginController: UIViewController {
     }
     
     func finishLoggingIn() {
-//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-//        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
-//
-//        mainNavigationController.viewControllers = [MessagesController()]
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        
+        mainNavigationController.viewControllers = [MessagesController()]
         
         UserDefaults.standard.setIsLoggedIn(value: true)
         
-        let messagesController = MessagesController()
-        navigationController?.viewControllers = [messagesController]
+        dismiss(animated: true, completion: nil)
     }
 }
 

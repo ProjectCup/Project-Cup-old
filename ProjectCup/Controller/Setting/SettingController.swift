@@ -233,9 +233,12 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         UserDefaults.standard.set(false, forKey: "status")
         
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let swipingController = SwipingController(collectionViewLayout: layout)
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
         
-        mainNavigationController.viewControllers = [LoginController()]
+        mainNavigationController.viewControllers = [swipingController]
         
         dismiss(animated: true, completion: nil)
         

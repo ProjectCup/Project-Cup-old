@@ -30,9 +30,9 @@ class MainNavigationController: UINavigationController {
     @objc func showIntroPages(){
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let swipingController = UINavigationController(rootViewController: SwipingController(collectionViewLayout: layout))
-        swipingController.setNavigationBarHidden(true, animated: false)
-        present(swipingController, animated: true, completion: nil)
+        let swipingController = SwipingController(collectionViewLayout: layout)
+        setNavigationBarHidden(true, animated: false)
+        viewControllers = [swipingController]
     }
     
 }

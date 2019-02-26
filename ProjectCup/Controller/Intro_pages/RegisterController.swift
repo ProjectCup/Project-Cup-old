@@ -229,7 +229,7 @@ class RegisterController: UIViewController {
         
         emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         
-        emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
+        emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         
         emailTextFieldHeightAnchor?.isActive = true
         
@@ -244,7 +244,7 @@ class RegisterController: UIViewController {
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
         
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
+        passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         passwordTextFieldHeightAnchor?.isActive = true
         
         //need x, y, width, height constraints
@@ -258,7 +258,7 @@ class RegisterController: UIViewController {
         confirmpasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor).isActive = true
         
         confirmpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        confirmpasswordTextFieldHeightAnchor = confirmpasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
+        confirmpasswordTextFieldHeightAnchor = confirmpasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         confirmpasswordTextFieldHeightAnchor?.isActive = true
     }
     
