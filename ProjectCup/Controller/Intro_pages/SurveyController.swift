@@ -18,7 +18,7 @@ struct Question {
     var selectedAnswerIndex: Int?
 }
 
-var questionsList: [Question] = [Question(questionString: "How do you feel right now?", answers: ["Very good", "Good","Moderate", "Bad", "Very Bad"], selectedAnswerIndex: nil), Question(questionString: "What would you like to talk about today?", answers: ["School", "Work", "Family", "Friends", "Relationships", "Other", "Just want to chat" ], selectedAnswerIndex: nil), Question(questionString: "Are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to say"], selectedAnswerIndex: nil)]
+var questionsList: [Question] = [Question(questionString: "How do you feel right now?", answers: ["Very good", "Good","Moderate", "Bad", "Very Bad"], selectedAnswerIndex: nil), Question(questionString: "What would you like to talk about today?", answers: ["School", "Work", "Family", "Friends", "Relationships", "Anything" ], selectedAnswerIndex: nil), Question(questionString: "Are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to say"], selectedAnswerIndex: nil)]
 
 class SurveyController: UITableViewController {
     
