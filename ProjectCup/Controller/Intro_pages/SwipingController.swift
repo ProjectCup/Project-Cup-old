@@ -62,7 +62,6 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         
         let surveyController = UINavigationController(rootViewController: SurveyController())
         self.present(surveyController, animated: true, completion: nil)
-        surveyController.setNavigationBarHidden(false, animated: false)
     }
     
     
@@ -123,6 +122,8 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
         setupBottomControls()
         

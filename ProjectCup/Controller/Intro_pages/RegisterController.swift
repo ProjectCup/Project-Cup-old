@@ -81,7 +81,6 @@ class RegisterController: UIViewController {
         fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
             let ref = Database.database().reference()
             let usersReference = ref.child("users").child(uid)
-            let messageController = UINavigationController(rootViewController: MessagesController())
 
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                     
@@ -90,7 +89,7 @@ class RegisterController: UIViewController {
                         return
                     }
                     
-                    self.present(messageController, animated: true, completion: nil)
+                    self.finishRegister()
                 })
             
             let answerReference = ref.child("answers").child("\(self.userAnswer[1])")
@@ -102,6 +101,17 @@ class RegisterController: UIViewController {
                 })
             
         }
+    
+    func finishRegister() {
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        
+        mainNavigationController.viewControllers = [MessagesController()]
+        
+        UserDefaults.standard.setIsLoggedIn(value: true)
+        
+        dismiss(animated: true, completion: nil)
+    }
 
     
 //    let nameTextField: UITextField = {

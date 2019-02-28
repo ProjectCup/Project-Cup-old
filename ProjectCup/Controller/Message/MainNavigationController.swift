@@ -19,7 +19,7 @@ class MainNavigationController: UINavigationController {
             let messagesController = MessagesController()
             viewControllers = [messagesController]
         } else {
-            perform(#selector(showIntroPages), with: nil, afterDelay: 0.01)
+            perform(#selector(showIntroPages), with: nil, afterDelay: 0)
         }
         
     }
@@ -31,7 +31,6 @@ class MainNavigationController: UINavigationController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
-        setNavigationBarHidden(true, animated: false)
         viewControllers = [swipingController]
     }
     
