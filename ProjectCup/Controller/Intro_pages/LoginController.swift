@@ -210,7 +210,7 @@ class LoginController: UIViewController {
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
         
-        mainNavigationController.viewControllers = [MessagesController()]
+        mainNavigationController.viewControllers = [TabBarController()]
         
         UserDefaults.standard.setIsLoggedIn(value: true)
         

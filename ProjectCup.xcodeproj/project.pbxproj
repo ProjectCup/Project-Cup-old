@@ -32,8 +32,8 @@
 		BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031C21FD3B5C009D7519 /* NewMessageController.swift */; };
 		BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031E21FD3BDE009D7519 /* MatchController.swift */; };
 		BB30032221FD3DD4009D7519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032121FD3DD4009D7519 /* User.swift */; };
-		BB56BFC7222993E200B667B4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFC6222993E200B667B4 /* TabBarController.swift */; };
-		BB56BFC92229946B00B667B4 /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFC82229946B00B667B4 /* MainPageController.swift */; };
+		BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFC82229946B00B667B4 /* TabBarController.swift */; };
+		BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCA222ADC6300B667B4 /* HomeController.swift */; };
 		BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F94D1220F87530056F5DB /* ChangeController.swift */; };
 		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
 		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
@@ -93,8 +93,8 @@
 		BB30031C21FD3B5C009D7519 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		BB30031E21FD3BDE009D7519 /* MatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchController.swift; sourceTree = "<group>"; };
 		BB30032121FD3DD4009D7519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BB56BFC6222993E200B667B4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		BB56BFC82229946B00B667B4 /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
+		BB56BFC82229946B00B667B4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BB56BFCA222ADC6300B667B4 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BB8F94D1220F87530056F5DB /* ChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 		BB30030C21F4302A009D7519 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BB56BFC6222993E200B667B4 /* TabBarController.swift */,
-				BB56BFC82229946B00B667B4 /* MainPageController.swift */,
+				BB56BFC82229946B00B667B4 /* TabBarController.swift */,
+				BB56BFCA222ADC6300B667B4 /* HomeController.swift */,
 				BB17C40C2208875F006C9623 /* MainNavigationController.swift */,
 				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
@@ -564,9 +564,9 @@
 				BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */,
 				BB0D29BF220A14CD00202DE0 /* FAQController.swift in Sources */,
 				BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */,
-				BB56BFC7222993E200B667B4 /* TabBarController.swift in Sources */,
-				BB56BFC92229946B00B667B4 /* MainPageController.swift in Sources */,
+				BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */,
 				BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */,
+				BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */,
 				BB17C40D2208875F006C9623 /* MainNavigationController.swift in Sources */,
 				BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */,
 				C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */,

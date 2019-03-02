@@ -14,9 +14,10 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        
         if isLoggedIn() {
             //assume user is logged in
-            let tabbarController = MessagesController()
+            let tabbarController = TabBarController()
             viewControllers = [tabbarController]
         } else {
             perform(#selector(showIntroPages), with: nil, afterDelay: 0)
