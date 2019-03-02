@@ -92,13 +92,8 @@ class RegisterController: UIViewController {
                     self.finishRegister()
                 })
             
-            let answerReference = ref.child("answers").child("\(self.userAnswer[1])")
-            answerReference.updateChildValues( ["user_id": uid], withCompletionBlock: { (err, ref) in
-                if err != nil{
-                    print(err!)
-                    return
-                }
-                })
+            let answerReference = ref.child("answers").child("\(self.userAnswer[1])").child(uid)
+            answerReference.setValue(1)
             
         }
     

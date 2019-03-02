@@ -16,8 +16,8 @@ class MainNavigationController: UINavigationController {
         view.backgroundColor = UIColor.white
         if isLoggedIn() {
             //assume user is logged in
-            let messagesController = MessagesController()
-            viewControllers = [messagesController]
+            let tabbarController = MessagesController()
+            viewControllers = [tabbarController]
         } else {
             perform(#selector(showIntroPages), with: nil, afterDelay: 0)
         }
