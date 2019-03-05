@@ -42,6 +42,11 @@ class MessagesController: UITableViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+        tabBarController?.tabBar.isHidden = false
+        
+        tableView.tableFooterView = UIView()
+        
+        tableView.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(gotoSetting))
         
@@ -193,7 +198,8 @@ class MessagesController: UITableViewController {
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        navigationController?.pushViewController(chatLogController, animated: true)
+        chatLogController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(chatLogController, animated: false)
     }
     
     

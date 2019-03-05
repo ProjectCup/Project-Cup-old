@@ -19,6 +19,7 @@ class TabBarController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
         view.backgroundColor = UIColor.blue
         createTabBarController()
         checkIfUserIsLoggedIn()
