@@ -111,7 +111,7 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
             cell.accessoryType = .disclosureIndicator
         if 0 == indexPath.section {
             if 0 == indexPath.row {
-                cell.textLabel?.text = "Change Password"
+                cell.textLabel?.text = "Change Email/Password"
             } else if 1 == indexPath.row {
                 cell.textLabel?.text = "Delete All Data"
             } else if 2 == indexPath.row {

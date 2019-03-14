@@ -11,8 +11,10 @@ import Firebase
 import FirebaseStorage
 import FirebaseDatabase
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
     
+    
+    private let errorMessage = UILabel()
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -45,7 +47,6 @@ class LoginController: UIViewController {
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 25
-
         button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
 
         return button
@@ -72,10 +73,19 @@ class LoginController: UIViewController {
             return
         }
         
+        if isValidEmail(testStr: email) == false {
+            errorMessage.isHidden = false
+            errorMessage.text = "Email is not valid"
+            return
+        }
+        
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
-                print(error ?? "")
+                self.inputsContainerView.layer.borderWidth = 1.0
+                self.inputsContainerView.layer.borderColor = UIColor.red.cgColor
+                self.errorMessage.isHidden = false
+                self.errorMessage.text = "Incorrect email or password"
                 return
             }
             
@@ -87,10 +97,39 @@ class LoginController: UIViewController {
         
     }
     
+    func isValidEmail(testStr:String) -> Bool {
+        
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+    }
+    
+    func setupErrorMessage() {
+        
+        errorMessage.translatesAutoresizingMaskIntoConstraints = false
+        errorMessage.text = "Error"
+        errorMessage.textColor = .red
+        errorMessage.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            errorMessage.leadingAnchor.constraint(equalTo: inputsContainerView.leadingAnchor, constant: 5),
+            errorMessage.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 10.0), errorMessage.bottomAnchor.constraint(equalTo: LoginButton.topAnchor, constant: -10.0)
+            ])
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        inputsContainerView.layer.borderWidth = 0
+        errorMessage.isHidden = true
+    }
+
+    
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         return tf
     }()
     
@@ -105,6 +144,7 @@ class LoginController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -122,17 +162,22 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         
         view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
         view.addSubview(LoginButton)
         view.addSubview(BackButton)
+        view.addSubview(errorMessage)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         
         setupProfileImageView()
         setupInputsContainerView()
         setupLoginButton()
         setupBackButton()
+        setupErrorMessage()
         
     }
     
@@ -164,9 +209,7 @@ class LoginController: UIViewController {
         //need x, y, width, height constraints
         emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
-        
-        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        
+        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         
         emailTextFieldHeightAnchor?.isActive = true
@@ -181,7 +224,7 @@ class LoginController: UIViewController {
         passwordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
         
-        passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         passwordTextFieldHeightAnchor?.isActive = true
     }
@@ -189,7 +232,7 @@ class LoginController: UIViewController {
     func setupLoginButton() {
         //need x, y, width, height constraints
         LoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        LoginButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        LoginButton.topAnchor.constraint(equalTo: errorMessage.bottomAnchor, constant: 12).isActive = true
         LoginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         LoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }

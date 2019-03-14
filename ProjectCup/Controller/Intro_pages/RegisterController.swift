@@ -13,7 +13,10 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 
-class RegisterController: UIViewController {
+class RegisterController: UIViewController, UITextFieldDelegate {
+    
+    private let errorMessage = UILabel()
+
     
     var userAnswer : [Int] = []
     var userName : String = ""
@@ -22,7 +25,7 @@ class RegisterController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         return view
     }()
@@ -42,19 +45,42 @@ class RegisterController: UIViewController {
         return button
     }()
     
+    func setupErrorMessage() {
+        
+        errorMessage.translatesAutoresizingMaskIntoConstraints = false
+        errorMessage.text = "Error"
+        errorMessage.textColor = .red
+        errorMessage.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            errorMessage.leadingAnchor.constraint(equalTo: inputsContainerView.leadingAnchor, constant: 5),
+            errorMessage.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 10.0), errorMessage.bottomAnchor.constraint(equalTo: RegisterButton.topAnchor, constant: -10.0)
+            ])
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        inputsContainerView.layer.borderWidth = 0
+        errorMessage.isHidden = true
+    }
+    
     
     @objc func handleRegister() {
         
         
-        guard let email = emailTextField.text, let password = passwordTextField.text//, let name = nameTextField.text
+        guard let email = emailTextField.text, let password = passwordTextField.text
             else {
             print("Form is not valid")
             return
         }
         
+        if isValidEmail(testStr: email) == false {
+            errorMessage.isHidden = false
+            errorMessage.text = "Email is not valid"
+            return
+        }
+        
         if passwordTextField.text == confirmpasswordTextField.text {
 
-        
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {
@@ -73,12 +99,16 @@ class RegisterController: UIViewController {
         })
             
         } else {
+            inputsContainerView.layer.borderWidth = 1.0
+            inputsContainerView.layer.borderColor = UIColor.red.cgColor
+            errorMessage.isHidden = false
+            errorMessage.text = "Passwords don't match"
             print("pws dont match")
             return
         }
     }
         
-        fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
+    fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
             let ref = Database.database().reference()
             let usersReference = ref.child("users").child(uid)
 
@@ -97,6 +127,15 @@ class RegisterController: UIViewController {
             
         }
     
+    func isValidEmail(testStr:String) -> Bool {
+        
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+    }
+    
     func finishRegister() {
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
@@ -107,26 +146,12 @@ class RegisterController: UIViewController {
         
         dismiss(animated: true, completion: nil)
     }
-
-    
-//    let nameTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.placeholder = "NickName"
-//        tf.translatesAutoresizingMaskIntoConstraints = false
-//        return tf
-//    }()
-    
-//    let nameSeparatorView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor.gray
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
     
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         return tf
     }()
     
@@ -141,6 +166,7 @@ class RegisterController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -156,6 +182,7 @@ class RegisterController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Confirm Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -173,15 +200,22 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.white
         
         view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
         view.addSubview(RegisterButton)
+        view.addSubview(errorMessage)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmpasswordTextField.delegate = self
         
         setupProfileImageView()
         setupInputsContainerView()
         setupRegisterButton()
+        setupErrorMessage()
+
     }
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
@@ -215,24 +249,10 @@ class RegisterController: UIViewController {
         inputsContainerView.addSubview(confirmpasswordTextField)
         
         //need x, y, width, height constraints
-//        nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
-//        nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
-//
-//        nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-//        nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/4)
-//        nameTextFieldHeightAnchor?.isActive = true
-        
-//        //need x, y, width, height constraints
-//        nameSeparatorView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
-//        nameSeparatorView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
-//        nameSeparatorView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-//        nameSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
-        //need x, y, width, height constraints
         emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
         
-        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         
         emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         
@@ -248,7 +268,7 @@ class RegisterController: UIViewController {
         passwordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
         
-        passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         passwordTextFieldHeightAnchor?.isActive = true
         
@@ -262,7 +282,7 @@ class RegisterController: UIViewController {
         confirmpasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         confirmpasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor).isActive = true
         
-        confirmpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        confirmpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         confirmpasswordTextFieldHeightAnchor = confirmpasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         confirmpasswordTextFieldHeightAnchor?.isActive = true
     }
@@ -271,10 +291,12 @@ class RegisterController: UIViewController {
     func setupRegisterButton() {
         
         RegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        RegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        RegisterButton.topAnchor.constraint(equalTo: errorMessage.bottomAnchor, constant: 12).isActive = true
         RegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         RegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
+    
+
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

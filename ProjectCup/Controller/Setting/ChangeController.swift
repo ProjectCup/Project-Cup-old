@@ -11,8 +11,10 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ChangeController: UIViewController {
+class ChangeController: UIViewController, UITextFieldDelegate {
     
+    private let errorMessage = UILabel()
+
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -69,17 +71,30 @@ class ChangeController: UIViewController {
     
     func handleEmail() {
         print("email")
-        let email = emailTextField.text
+        guard let email = emailTextField.text
+            else {
+                print("Form is not valid")
+                return
+        }
+        
+        if isValidEmail(testStr: email) == false {
+            inputsContainerView.layer.borderWidth = 1.0
+            inputsContainerView.layer.borderColor = UIColor.red.cgColor
+            errorMessage.isHidden = false
+            errorMessage.text = "Email is not valid"
+            return
+        }
+        
         if emailTextField.text == confirmemailTextField.text {
             
-            Auth.auth().currentUser?.updateEmail(to: email ?? "", completion: { (error) in
+            Auth.auth().currentUser?.updateEmail(to: email , completion: { (error) in
                 if error != nil {
                     print(error!)
                     return
                 }
                 let ref = Database.database().reference()
                 let usersReference = ref.child("users").child(Auth.auth().currentUser!.uid)
-                usersReference.updateChildValues(["email" : email! ], withCompletionBlock: {(error, reference)   in
+                usersReference.updateChildValues(["email" : email ], withCompletionBlock: {(error, reference)   in
                     
                     if error == nil{
                         print(reference)
@@ -89,6 +104,10 @@ class ChangeController: UIViewController {
                 })
             })
         } else {
+            inputsContainerView.layer.borderWidth = 1.0
+            inputsContainerView.layer.borderColor = UIColor.red.cgColor
+            errorMessage.isHidden = false
+            errorMessage.text = "Emails don't match"
             print("emails dont match")
             return
         }
@@ -119,9 +138,40 @@ class ChangeController: UIViewController {
                 })
             })
         } else {
+            inputsContainerView.layer.borderWidth = 1.0
+            inputsContainerView.layer.borderColor = UIColor.red.cgColor
+            errorMessage.isHidden = false
+            errorMessage.text = "Passwords don't match"
             print("pws dont match")
             return
         }
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        
+        print("validate emilId: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
+    }
+    
+    func setupErrorMessage() {
+        
+        errorMessage.translatesAutoresizingMaskIntoConstraints = false
+        errorMessage.text = "Error"
+        errorMessage.textColor = .red
+        errorMessage.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            errorMessage.leadingAnchor.constraint(equalTo: inputsContainerView.leadingAnchor, constant: 5),
+            errorMessage.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 10.0), errorMessage.bottomAnchor.constraint(equalTo: confirmButton.topAnchor, constant: -10.0)
+            ])
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        inputsContainerView.layer.borderWidth = 0
+        errorMessage.isHidden = true
     }
     
     
@@ -129,6 +179,7 @@ class ChangeController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "New Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isHidden = true
         return tf
     }()
@@ -144,6 +195,7 @@ class ChangeController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Confirm Email"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isHidden = true
         return tf
     }()
@@ -153,6 +205,7 @@ class ChangeController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "New Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -168,6 +221,7 @@ class ChangeController: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Confirm Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
         tf.isSecureTextEntry = true
         return tf
     }()
@@ -222,7 +276,9 @@ class ChangeController: UIViewController {
         view.addSubview(inputsContainerView)
         view.addSubview(confirmButton)
         view.addSubview(emailpwSegmentedControl)
+        view.addSubview(errorMessage)
         
+        setupErrorMessage()
         setupInputsContainerView()
         setupConfirmButton()
         setupEmailpwSegmentedControl()
@@ -262,7 +318,7 @@ class ChangeController: UIViewController {
         emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
         
-        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         
         emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         
@@ -278,7 +334,7 @@ class ChangeController: UIViewController {
         confirmemailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         confirmemailTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
         
-        confirmemailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        confirmemailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         
         confirmemailTextFieldHeightAnchor = confirmemailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         
@@ -289,7 +345,7 @@ class ChangeController: UIViewController {
         newpasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         newpasswordTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
         
-        newpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        newpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         newpasswordTextFieldHeightAnchor = newpasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         newpasswordTextFieldHeightAnchor?.isActive = true
         
@@ -303,7 +359,7 @@ class ChangeController: UIViewController {
         confirmpasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         confirmpasswordTextField.topAnchor.constraint(equalTo: newpasswordTextField.bottomAnchor).isActive = true
         
-        confirmpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        confirmpasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: -10).isActive = true
         confirmpasswordTextFieldHeightAnchor = confirmpasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/2)
         confirmpasswordTextFieldHeightAnchor?.isActive = true
     }
@@ -311,7 +367,7 @@ class ChangeController: UIViewController {
     func setupConfirmButton() {
         //need x, y, width, height constraints
         confirmButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        confirmButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
+        confirmButton.topAnchor.constraint(equalTo: errorMessage.bottomAnchor, constant: 12).isActive = true
         confirmButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         confirmButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }

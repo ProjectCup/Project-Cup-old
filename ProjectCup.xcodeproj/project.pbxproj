@@ -34,6 +34,8 @@
 		BB30032221FD3DD4009D7519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032121FD3DD4009D7519 /* User.swift */; };
 		BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFC82229946B00B667B4 /* TabBarController.swift */; };
 		BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCA222ADC6300B667B4 /* HomeController.swift */; };
+		BB56BFCD2238400200B667B4 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCC2238400200B667B4 /* HomeCell.swift */; };
+		BB56BFCF2239914F00B667B4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCE2239914F00B667B4 /* Content.swift */; };
 		BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F94D1220F87530056F5DB /* ChangeController.swift */; };
 		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
 		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
@@ -95,6 +97,8 @@
 		BB30032121FD3DD4009D7519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB56BFC82229946B00B667B4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BB56BFCA222ADC6300B667B4 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		BB56BFCC2238400200B667B4 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		BB56BFCE2239914F00B667B4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		BB8F94D1220F87530056F5DB /* ChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
@@ -234,8 +238,8 @@
 		BB30030C21F4302A009D7519 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BB56BFD02239931F00B667B4 /* Home */,
 				BB56BFC82229946B00B667B4 /* TabBarController.swift */,
-				BB56BFCA222ADC6300B667B4 /* HomeController.swift */,
 				BB17C40C2208875F006C9623 /* MainNavigationController.swift */,
 				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
@@ -260,6 +264,16 @@
 				BB0D29C7220E32A000202DE0 /* UserCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BB56BFD02239931F00B667B4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BB56BFCA222ADC6300B667B4 /* HomeController.swift */,
+				BB56BFCC2238400200B667B4 /* HomeCell.swift */,
+				BB56BFCE2239914F00B667B4 /* Content.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		C86E8AB322246DEA0005E54D /* Intro_pages */ = {
@@ -557,6 +571,7 @@
 				BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */,
 				BB0D29CA220E32CE00202DE0 /* Message.swift in Sources */,
 				BB17C3EF21FE5FCC006C9623 /* SettingController.swift in Sources */,
+				BB56BFCD2238400200B667B4 /* HomeCell.swift in Sources */,
 				BB17C40922086658006C9623 /* SurveyController.swift in Sources */,
 				BB0D29C4220E323500202DE0 /* ChatLogController.swift in Sources */,
 				BB0D29C2220C991400202DE0 /* DeleteController.swift in Sources */,
@@ -564,6 +579,7 @@
 				BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */,
 				BB0D29BF220A14CD00202DE0 /* FAQController.swift in Sources */,
 				BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */,
+				BB56BFCF2239914F00B667B4 /* Content.swift in Sources */,
 				BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */,
 				BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */,
 				BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */,

@@ -31,7 +31,8 @@ class TabBarController: UIViewController {
         
         tbController = UITabBarController()
         
-        let homepageController = HomeController()
+        let layout = UICollectionViewLayout()
+        let homepageController = HomeController(collectionViewLayout: layout)
         let firstnavigationController = UINavigationController(rootViewController: homepageController)
         firstnavigationController.title = "Home"
         
