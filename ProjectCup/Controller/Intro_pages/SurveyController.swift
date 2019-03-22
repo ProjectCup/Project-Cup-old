@@ -18,7 +18,9 @@ struct Question {
     var selectedAnswerIndex: Int?
 }
 
-var questionsList: [Question] = [Question(questionString: "How do you feel right now?", answers: ["Very good", "Good","Moderate", "Bad", "Very Bad"], selectedAnswerIndex: nil), Question(questionString: "What would you like to talk about today?", answers: ["School", "Work", "Family", "Friends", "Relationships", "Anything" ], selectedAnswerIndex: nil), Question(questionString: "Are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to say"], selectedAnswerIndex: nil)]
+var userName: String = ""
+
+var questionsList: [Question] = [Question(questionString: "Hi \(userName), how do you feel right now?", answers: ["Very good", "Good","Moderate", "Bad", "Very Bad"], selectedAnswerIndex: nil), Question(questionString: "\(userName), what would you like to talk about today?", answers: ["School", "Work", "Family", "Friends", "Relationships", "Anything" ], selectedAnswerIndex: nil), Question(questionString: "\(userName), are you working with mental health professionals?", answers: ["Yes", "No", "I prefer no to say"], selectedAnswerIndex: nil)]
 
 class SurveyController: UITableViewController {
     
@@ -28,6 +30,7 @@ class SurveyController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         let currentPosition = navigationController?.viewControllers.index(of:self) ?? 0
         navigationItem.title = "Question \(currentPosition + 1)/\(questionsList.count)"
         
@@ -87,15 +90,33 @@ class SurveyController: UITableViewController {
                 let questionController = SurveyController()
                 navigationController?.pushViewController(questionController, animated: true)
             }else{
-                let controller = ResultsController()
-                navigationController?.pushViewController(controller, animated: true)
+                // add code to jump to register
+                
+                //let controller = ResultsController()
+                //navigationController?.pushViewController(controller, animated: true)
+                let regController = RegisterController()
+                regController.userAnswer = getAnswers()
+                regController.userName = userName
+                navigationController?.pushViewController(regController, animated: true)
                 
             }
         }
     }
+    
+    fileprivate func getAnswers() -> [Int]{
+        
+        var answerList : [Int] = []
+        
+        for q in questionsList{
+            answerList.append(q.selectedAnswerIndex!)
+        }
+        
+        return answerList
+    }
+    
 }
 
-class ResultsController: UIViewController{
+class NameController: UIViewController{
     
     let resultsLabel: UILabel = {
         let label = UILabel()
@@ -117,7 +138,8 @@ class ResultsController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ResultsController.done))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(NameController.done))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(NameController.back))
         
         view.backgroundColor = UIColor.white
         
@@ -137,22 +159,15 @@ class ResultsController: UIViewController{
             return
         }
         
-        let regController = RegisterController()
-        regController.userAnswer = getAnswers()
-        regController.userName = name
-        navigationController?.pushViewController(regController, animated: true)
+        userName = name
+        let surveyController = UINavigationController(rootViewController: SurveyController())
+        self.present(surveyController, animated: true, completion: nil)
+
         
     }
-    
-    fileprivate func getAnswers() -> [Int]{
-        
-        var answerList : [Int] = []
-        
-        for q in questionsList{
-            answerList.append(q.selectedAnswerIndex!)
-        }
-        
-        return answerList
+ 
+    @objc func back(){
+        dismiss(animated: true, completion: nil)
     }
     
 }
