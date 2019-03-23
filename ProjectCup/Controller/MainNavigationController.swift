@@ -17,8 +17,7 @@ class MainNavigationController: UINavigationController {
         
         if isLoggedIn() {
             //assume user is logged in
-            let tabbarController = TabBarController()
-            viewControllers = [tabbarController]
+            perform(#selector(showTabbar), with: nil, afterDelay: 0)
         } else {
             perform(#selector(showIntroPages), with: nil, afterDelay: 0)
         }
@@ -26,6 +25,11 @@ class MainNavigationController: UINavigationController {
     }
     fileprivate func isLoggedIn() -> Bool {
         return UserDefaults.standard.isLoggedIn()
+    }
+    
+    @objc func showTabbar(){
+        let tabbarController = TabBarController()
+        present(tabbarController, animated: true, completion: nil)
     }
     
     @objc func showIntroPages(){

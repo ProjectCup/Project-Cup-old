@@ -137,15 +137,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     }
     
     func finishRegister() {
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
-        
-        mainNavigationController.viewControllers = [TabBarController()]
+        let tabbarController = TabBarController()
+        present(tabbarController, animated: true, completion: nil)
         
         UserDefaults.standard.setIsLoggedIn(value: true)
-        
-        dismiss(animated: true, completion: nil)
-    }
+        }
     
     let emailTextField: UITextField = {
         let tf = UITextField()

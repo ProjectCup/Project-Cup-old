@@ -29,7 +29,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(gotoSetting))
+        
+        setNaviBaritems()
 
+    }
+    
+    private func setNaviBaritems() {
+        
+        navigationItem.titleView = UIImageView(image: UIImage(named: "AppIcon"))
+        
     }
     
 

@@ -41,6 +41,7 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         navigationItem.title = "Settings"
+        navigationController?.navigationBar.backgroundColor = UIColor.green
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
@@ -232,17 +233,11 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         //change locally the login status of the user
         UserDefaults.standard.set(false, forKey: "status")
         
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
-        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
-        
-        mainNavigationController.viewControllers = [swipingController]
-        
-        dismiss(animated: true, completion: nil)
-        
-        
+        present(swipingController, animated: true, completion: nil)
+                
     }
 
 }

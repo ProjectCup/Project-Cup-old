@@ -257,9 +257,8 @@ class MessagesController: UITableViewController {
     }
     
     @objc func gotoSetting(){
-        let settingController = SettingController()
-        let navController = UINavigationController(rootViewController: settingController)
-        present(navController, animated: true, completion: nil)
+        let settingController =  UINavigationController(rootViewController: SettingController())
+        present(settingController, animated: true, completion: nil)
     }
     @objc func handleNewMessage() {
         //let newMessageController = NewMessageController()

@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import Firebase
 
-class TabBarController: UIViewController {
+class TabBarController: UITabBarController {
     
-    var tbController: UITabBarController!
+//    let tbController = UITabBarController()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
         
         view.backgroundColor = UIColor.blue
         createTabBarController()
@@ -28,8 +28,6 @@ class TabBarController: UIViewController {
     
     func createTabBarController() {
         
-        
-        tbController = UITabBarController()
         
         let layout = UICollectionViewLayout()
         let homepageController = HomeController(collectionViewLayout: layout)
@@ -41,8 +39,8 @@ class TabBarController: UIViewController {
         secondnavigationController.title = "Messages"
         
         
-        tbController.viewControllers = [firstnavigationController, secondnavigationController]
-        self.view.addSubview(tbController.view)
+        viewControllers = [firstnavigationController, secondnavigationController]
+//        self.view.addSubview(tbController.view)
         
     }
     

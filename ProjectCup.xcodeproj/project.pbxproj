@@ -238,9 +238,9 @@
 		BB30030C21F4302A009D7519 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BB56BFD02239931F00B667B4 /* Home */,
 				BB56BFC82229946B00B667B4 /* TabBarController.swift */,
 				BB17C40C2208875F006C9623 /* MainNavigationController.swift */,
+				BB56BFD02239931F00B667B4 /* Home */,
 				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
 				BB0D29C0220B063800202DE0 /* Setting */,
