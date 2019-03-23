@@ -55,13 +55,9 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     @objc private func handleReg(){
         
-//        let nextIndex = max(pageControl.currentPage - 1, 0)
-//        let indexPath = IndexPath(item: nextIndex, section: 0)
-//        pageControl.currentPage = nextIndex
-//        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
-        let surveyController = UINavigationController(rootViewController: SurveyController())
-        self.present(surveyController, animated: true, completion: nil)
+        let nameController = UINavigationController(rootViewController: NameController())
+        self.present(nameController, animated: true, completion: nil)
     }
     
     
