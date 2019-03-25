@@ -73,6 +73,7 @@ class MatchController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
         if indexPath.row == 0 {
+            randUser.removeAll()
             let user = self.users.randomElement()!
             self.randUser.append(user)
             cell.textLabel?.text = user.name
