@@ -48,14 +48,37 @@ class MessagesController: UITableViewController {
         
         tableView.contentInset.bottom = tabBarController?.tabBar.frame.height ?? 0
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(gotoSetting))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(handleNewMessage))
+        setNaviBarItems()
         
         checkIfUserIsLoggedIn()
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
+    }
+    
+    private func setNaviBarItems() {
+        //left bar item
+        
+        let settingButton = UIButton(type: .system)
+        settingButton.setImage(UIImage(named: "Setting"), for: .normal)
+        settingButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        settingButton.addTarget(self, action: #selector(gotoSetting), for: .touchUpInside)
+        
+        let settingBarItem = UIBarButtonItem(customView: settingButton)
+        settingBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        settingBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.navigationItem.leftBarButtonItem = settingBarItem
+        
+        //right bar item
+        let newchatButton = UIButton(type: .system)
+        newchatButton.setImage(UIImage(named: "New chat"), for: .normal)
+        newchatButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        newchatButton.addTarget(self, action: #selector(handleNewMessage), for: .touchUpInside)
+        
+        let newchatBarItem = UIBarButtonItem(customView: newchatButton)
+        newchatBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        newchatBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.navigationItem.rightBarButtonItem = newchatBarItem
     }
     
     var messages = [Message]()

@@ -17,7 +17,7 @@ struct Page {
 }
 
 extension UIColor{
-    static var mainGreen = UIColor(red: 171/255, green: 234/255, blue: 190/255, alpha: 1)
+    static var mainGreen = UIColor.black
 }
 
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {

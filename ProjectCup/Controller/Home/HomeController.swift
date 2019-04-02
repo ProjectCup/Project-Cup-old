@@ -27,8 +27,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupCollectionView()
         
         collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Setting", style: .plain, target: self, action: #selector(gotoSetting))
         
         setNaviBaritems()
 
@@ -36,8 +34,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     private func setNaviBaritems() {
         
-        navigationItem.titleView = UIImageView(image: UIImage(named: "AppIcon"))
+        navigationItem.titleView = UIImageView(image: UIImage(named: "cupv1"))
         
+        let settingButton = UIButton(type: .system)
+        settingButton.setImage(UIImage(named: "Setting"), for: .normal)
+        settingButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        settingButton.addTarget(self, action: #selector(gotoSetting), for: .touchUpInside)
+        
+        let settingBarItem = UIBarButtonItem(customView: settingButton)
+        settingBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        settingBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        self.navigationItem.leftBarButtonItem = settingBarItem
+
     }
     
 

@@ -113,21 +113,28 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         if 0 == indexPath.section {
             if 0 == indexPath.row {
                 cell.textLabel?.text = "Change Email/Password"
+                cell.imageView?.image = UIImage(named: "Change")
             } else if 1 == indexPath.row {
                 cell.textLabel?.text = "Delete All Data"
+                cell.imageView?.image = UIImage(named: "Delete")
             } else if 2 == indexPath.row {
                 cell.textLabel?.text = "Terms and Conditions"
+                cell.imageView?.image = UIImage(named: "Term")
             } else {
                 cell.textLabel?.text = "Frequently Asked Questions"
+                cell.imageView?.image = UIImage(named: "FAQ")
             }
                 
         } else if 1 == indexPath.section {
             if 0 == indexPath.row {
                 cell.textLabel?.text = "Refer A Friend"
+                cell.imageView?.image = UIImage(named: "Refer")
             } else if 1 == indexPath.row {
                 cell.textLabel?.text = "Rate"
+                cell.imageView?.image = UIImage(named: "Rate")
             } else {
                 cell.textLabel?.text = "Feedback"
+                cell.imageView?.image = UIImage(named: "Feedback")
             }
         }
 
