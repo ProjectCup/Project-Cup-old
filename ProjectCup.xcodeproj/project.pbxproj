@@ -36,7 +36,12 @@
 		BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCA222ADC6300B667B4 /* HomeController.swift */; };
 		BB56BFCD2238400200B667B4 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCC2238400200B667B4 /* HomeCell.swift */; };
 		BB56BFCF2239914F00B667B4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFCE2239914F00B667B4 /* Content.swift */; };
+		BB6F32B3226793F300952B76 /* MoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6F32B2226793F300952B76 /* MoodController.swift */; };
 		BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F94D1220F87530056F5DB /* ChangeController.swift */; };
+		BBB65B9A229ED2BC007C5CA0 /* AddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65B99229ED2BC007C5CA0 /* AddController.swift */; };
+		BBB65BB022A832E3007C5CA0 /* AddMoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BAF22A832E3007C5CA0 /* AddMoodController.swift */; };
+		BBB65BBA22AAE119007C5CA0 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BB922AAE119007C5CA0 /* Mood.swift */; };
+		BBB65BBC22AAE323007C5CA0 /* MoodEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */; };
 		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
 		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
 		DA4EA3A6CEADCA64E403993D /* Pods_ProjectCupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */; };
@@ -99,7 +104,12 @@
 		BB56BFCA222ADC6300B667B4 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		BB56BFCC2238400200B667B4 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		BB56BFCE2239914F00B667B4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		BB6F32B2226793F300952B76 /* MoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodController.swift; sourceTree = "<group>"; };
 		BB8F94D1220F87530056F5DB /* ChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
+		BBB65B99229ED2BC007C5CA0 /* AddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddController.swift; sourceTree = "<group>"; };
+		BBB65BAF22A832E3007C5CA0 /* AddMoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodController.swift; sourceTree = "<group>"; };
+		BBB65BB922AAE119007C5CA0 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryTableViewCell.swift; sourceTree = "<group>"; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		C86E8AAE22246D7D0005E54D /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
@@ -240,7 +250,9 @@
 			children = (
 				BB56BFC82229946B00B667B4 /* TabBarController.swift */,
 				BB17C40C2208875F006C9623 /* MainNavigationController.swift */,
+				BBB65B99229ED2BC007C5CA0 /* AddController.swift */,
 				BB56BFD02239931F00B667B4 /* Home */,
+				BB6F32B1226793D400952B76 /* Mood */,
 				C86E8AB322246DEA0005E54D /* Intro_pages */,
 				BB0D29CB220E96C200202DE0 /* Message */,
 				BB0D29C0220B063800202DE0 /* Setting */,
@@ -252,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				BB30032121FD3DD4009D7519 /* User.swift */,
+				BBB65BB922AAE119007C5CA0 /* Mood.swift */,
 				BB0D29C9220E32CE00202DE0 /* Message.swift */,
 			);
 			path = Model;
@@ -262,6 +275,7 @@
 			children = (
 				BB0D29C5220E328400202DE0 /* ChatMessageCell.swift */,
 				BB0D29C7220E32A000202DE0 /* UserCell.swift */,
+				BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,6 +288,15 @@
 				BB56BFCE2239914F00B667B4 /* Content.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		BB6F32B1226793D400952B76 /* Mood */ = {
+			isa = PBXGroup;
+			children = (
+				BB6F32B2226793F300952B76 /* MoodController.swift */,
+				BBB65BAF22A832E3007C5CA0 /* AddMoodController.swift */,
+			);
+			path = Mood;
 			sourceTree = "<group>";
 		};
 		C86E8AB322246DEA0005E54D /* Intro_pages */ = {
@@ -567,6 +590,7 @@
 				C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */,
 				BB30032221FD3DD4009D7519 /* User.swift in Sources */,
 				BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */,
+				BB6F32B3226793F300952B76 /* MoodController.swift in Sources */,
 				BB17C40B220885D8006C9623 /* UserDefault.swift in Sources */,
 				BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */,
 				BB0D29CA220E32CE00202DE0 /* Message.swift in Sources */,
@@ -578,6 +602,9 @@
 				BB17C40422079153006C9623 /* TermsController.swift in Sources */,
 				BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */,
 				BB0D29BF220A14CD00202DE0 /* FAQController.swift in Sources */,
+				BBB65BBC22AAE323007C5CA0 /* MoodEntryTableViewCell.swift in Sources */,
+				BBB65BBA22AAE119007C5CA0 /* Mood.swift in Sources */,
+				BBB65B9A229ED2BC007C5CA0 /* AddController.swift in Sources */,
 				BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */,
 				BB56BFCF2239914F00B667B4 /* Content.swift in Sources */,
 				BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */,
@@ -585,6 +612,7 @@
 				BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */,
 				BB17C40D2208875F006C9623 /* MainNavigationController.swift in Sources */,
 				BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */,
+				BBB65BB022A832E3007C5CA0 /* AddMoodController.swift in Sources */,
 				C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
