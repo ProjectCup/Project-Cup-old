@@ -284,14 +284,11 @@ class MessagesController: UITableViewController {
         present(settingController, animated: true, completion: nil)
     }
     @objc func handleNewMessage() {
-        //let newMessageController = NewMessageController()
         let newMessageController = MatchController()
         
         newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
     }
-
+    
 }
-
-
