@@ -12,6 +12,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod 'Firebase/Core'
+pod 'ViewAnimator'
+pod 'Hero'
 
   target 'ProjectCupTests' do
     inherit! :search_paths

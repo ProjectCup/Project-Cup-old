@@ -18,7 +18,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     private let errorMessage = UILabel()
 
     
-    var userAnswer : [Int] = []
+    var userAnswer : [[String]] = []
     var userName : String = ""
     
     let inputsContainerView: UIView = {
@@ -44,6 +44,24 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         
         return button
     }()
+    
+    var BackButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
+        button.setTitle("Back", for: UIControl.State())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.black, for: UIControl.State())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+
+        return button
+    }()
+
+    @objc func goBack() {
+        let vc = buttonView()
+        present(vc, animated: true, completion: nil)
+    }
     
     func setupErrorMessage() {
         
@@ -92,7 +110,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            let values = ["name": self.userName, "email": email, "password": password, "user_answer": self.userAnswer] as [String : Any]
+            let values = ["name": self.userName, "email": email, "password": password] as [String : Any]
             //successfully authenticated user
             self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
 
@@ -107,24 +125,33 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             return
         }
     }
-        
+    
+    
     fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
             let ref = Database.database().reference()
             let usersReference = ref.child("users").child(uid)
-
+            let timestamp = Int(Date().timeIntervalSince1970)
+            let usersJournal = ref.child("journal").child(uid).child("\(timestamp)")
+            let journalValues = ["Answer1": self.userAnswer[0], "Answer2": self.userAnswer[1], "Answer3": self.userAnswer[2]] as [String: Any]
+            usersJournal.updateChildValues(journalValues, withCompletionBlock: {(err, ref) in
+                if err != nil{
+                    print(err!)
+                    return
+                }
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                    
+
                     if err != nil {
                         print(err!)
                         return
                     }
-                    
+
                     self.finishRegister()
                 })
-            
-            let answerReference = ref.child("answers").child("\(self.userAnswer[1])").child(uid)
-            answerReference.setValue(1)
-            
+                for choice in self.userAnswer[0] {
+                    let choiceReference = ref.child("answers").child(choice).child(uid)
+                    choiceReference.setValue(1)
+                }
+            })
         }
     
     func isValidEmail(testStr:String) -> Bool {
@@ -201,6 +228,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         view.addSubview(profileImageView)
         view.addSubview(inputsContainerView)
         view.addSubview(RegisterButton)
+        view.addSubview(BackButton)
         view.addSubview(errorMessage)
         
         emailTextField.delegate = self
@@ -210,6 +238,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         setupProfileImageView()
         setupInputsContainerView()
         setupRegisterButton()
+        setupBackButton()
         setupErrorMessage()
 
     }
@@ -292,7 +321,13 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         RegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-
+    func setupBackButton() {
+        
+        BackButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        BackButton.topAnchor.constraint(equalTo: RegisterButton.bottomAnchor, constant: 12).isActive = true
+        BackButton.widthAnchor.constraint(equalTo: RegisterButton.widthAnchor).isActive = true
+        BackButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

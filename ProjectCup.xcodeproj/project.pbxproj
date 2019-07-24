@@ -29,7 +29,6 @@
 		BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30030A21F42F91009D7519 /* RegisterController.swift */; };
 		BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30030D21F430D1009D7519 /* MessagesController.swift */; };
 		BB30031921F43266009D7519 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB30031821F43266009D7519 /* GoogleService-Info.plist */; };
-		BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031C21FD3B5C009D7519 /* NewMessageController.swift */; };
 		BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30031E21FD3BDE009D7519 /* MatchController.swift */; };
 		BB30032221FD3DD4009D7519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB30032121FD3DD4009D7519 /* User.swift */; };
 		BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB56BFC82229946B00B667B4 /* TabBarController.swift */; };
@@ -44,6 +43,7 @@
 		BBB65BBC22AAE323007C5CA0 /* MoodEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */; };
 		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
 		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
+		C8E1242B22E802DF0040FC24 /* FlipboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */; };
 		DA4EA3A6CEADCA64E403993D /* Pods_ProjectCupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +97,6 @@
 		BB30030A21F42F91009D7519 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		BB30030D21F430D1009D7519 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		BB30031821F43266009D7519 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BB30031C21FD3B5C009D7519 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		BB30031E21FD3BDE009D7519 /* MatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchController.swift; sourceTree = "<group>"; };
 		BB30032121FD3DD4009D7519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB56BFC82229946B00B667B4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		C86E8AAE22246D7D0005E54D /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipboardViewController.swift; sourceTree = "<group>"; };
 		CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE08F0D286D2E5960B63C640 /* Pods_ProjectCupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -174,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				BB30030D21F430D1009D7519 /* MessagesController.swift */,
-				BB30031C21FD3B5C009D7519 /* NewMessageController.swift */,
 				BB0D29C3220E323500202DE0 /* ChatLogController.swift */,
 				BB30031E21FD3BDE009D7519 /* MatchController.swift */,
 			);
@@ -214,6 +213,7 @@
 		BB3002DB21F42F50009D7519 /* ProjectCup */ = {
 			isa = PBXGroup;
 			children = (
+				C8E1242D22E8042A0040FC24 /* Legacy */,
 				BB17C4012206AEA2006C9623 /* Resource */,
 				BB30032321FD5813009D7519 /* View */,
 				BB30032021FD3DC7009D7519 /* Model */,
@@ -302,13 +302,21 @@
 		C86E8AB322246DEA0005E54D /* Intro_pages */ = {
 			isa = PBXGroup;
 			children = (
+				C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */,
 				C86E8AAD22246D7C0005E54D /* SwipingController.swift */,
 				C86E8AAE22246D7D0005E54D /* PageCell.swift */,
-				BB17C40822086658006C9623 /* SurveyController.swift */,
 				BB30030A21F42F91009D7519 /* RegisterController.swift */,
 				BB3002DE21F42F50009D7519 /* LoginController.swift */,
 			);
 			path = Intro_pages;
+			sourceTree = "<group>";
+		};
+		C8E1242D22E8042A0040FC24 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				BB17C40822086658006C9623 /* SurveyController.swift */,
+			);
+			path = Legacy;
 			sourceTree = "<group>";
 		};
 		CF583238CD142F6AFA5A20C9 /* Frameworks */ = {
@@ -531,7 +539,9 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -544,7 +554,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewAnimator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -588,6 +600,7 @@
 				BB3002DD21F42F50009D7519 /* AppDelegate.swift in Sources */,
 				BB0D29C6220E328400202DE0 /* ChatMessageCell.swift in Sources */,
 				C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */,
+				C8E1242B22E802DF0040FC24 /* FlipboardViewController.swift in Sources */,
 				BB30032221FD3DD4009D7519 /* User.swift in Sources */,
 				BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */,
 				BB6F32B3226793F300952B76 /* MoodController.swift in Sources */,
@@ -608,7 +621,6 @@
 				BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */,
 				BB56BFCF2239914F00B667B4 /* Content.swift in Sources */,
 				BB56BFC92229946B00B667B4 /* TabBarController.swift in Sources */,
-				BB30031D21FD3B5C009D7519 /* NewMessageController.swift in Sources */,
 				BB56BFCB222ADC6300B667B4 /* HomeController.swift in Sources */,
 				BB17C40D2208875F006C9623 /* MainNavigationController.swift in Sources */,
 				BB30030E21F430D1009D7519 /* MessagesController.swift in Sources */,

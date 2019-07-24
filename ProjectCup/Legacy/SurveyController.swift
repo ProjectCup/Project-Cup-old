@@ -95,7 +95,7 @@ class SurveyController: UITableViewController {
                 //let controller = ResultsController()
                 //navigationController?.pushViewController(controller, animated: true)
                 let regController = RegisterController()
-                regController.userAnswer = getAnswers()
+//                regController.userAnswer = getAnswers()
                 regController.userName = userName
                 navigationController?.pushViewController(regController, animated: true)
                 

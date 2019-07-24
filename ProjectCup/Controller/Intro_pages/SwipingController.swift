@@ -56,8 +56,10 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     @objc private func handleReg(){
         
         
-        let nameController = UINavigationController(rootViewController: NameController())
-        self.present(nameController, animated: true, completion: nil)
+//        let nameController = UINavigationController(rootViewController: NameController())
+//        self.present(nameController, animated: true, completion: nil)
+        let vc = buttonView()
+        present(vc, animated: true, completion: nil)
     }
     
     
