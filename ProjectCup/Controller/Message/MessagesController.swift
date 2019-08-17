@@ -120,31 +120,35 @@ class MessagesController: UITableViewController {
         let ref = Database.database().reference().child("user-messages").child(uid)
         ref.observe(.childAdded, with: { (snapshot) in
             
-            let messageId = snapshot.key
-            let messagesReference = Database.database().reference().child("messages").child(messageId)
-            
-            messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            let userId = snapshot.key
+            Database.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
                 
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message(dictionary: dictionary)
+                let messageId = snapshot.key
+                let messagesReference = Database.database().reference().child("messages").child(messageId)
+                
+                messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    if let charPartnerId = message.chatPartnerId() {
-                        self.messagesDictionary[charPartnerId] = message
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        let message = Message(dictionary: dictionary)
                         
-                        self.messages = Array(self.messagesDictionary.values)
-                        self.messages.sort(by: { (message1, message2) -> Bool in
+                        if let charPartnerId = message.chatPartnerId() {
+                            self.messagesDictionary[charPartnerId] = message
                             
-                            return message1.timestamp?.int32Value > message2.timestamp?.int32Value
-                        })
+                            self.messages = Array(self.messagesDictionary.values)
+                            self.messages.sort(by: { (message1, message2) -> Bool in
+                                
+                                return message1.timestamp?.int32Value > message2.timestamp?.int32Value
+                            })
+                        }
+                        
+                        self.timer?.invalidate()
+                        print("we just canceled our timer")
+                        
+                        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+                        print("schedule a table reload in 0.1 sec")
+                        
                     }
-                    
-                    self.timer?.invalidate()
-                    print("we just canceled our timer")
-                    
-                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
-                    print("schedule a table reload in 0.1 sec")
-                    
-                }
+                }, withCancel: nil)
             }, withCancel: nil)
         }, withCancel: nil)
     }
