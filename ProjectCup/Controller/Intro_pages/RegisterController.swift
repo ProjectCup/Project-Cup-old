@@ -130,13 +130,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
             let ref = Database.database().reference()
             let usersReference = ref.child("users").child(uid)
-            let timestamp = Int(Date().timeIntervalSince1970)
-            let usersJournal = ref.child("journal").child(uid).child("\(timestamp)")
-            let journalValues = ["Answer1": self.userAnswer[0], "Answer2": self.userAnswer[1], "Answer3": self.userAnswer[2]] as [String: Any]
-            usersJournal.updateChildValues(journalValues, withCompletionBlock: {(err, ref) in
-                if err != nil{
-                    print(err!)
-                    return
+               for choice in self.userAnswer[0] {
+                    let choiceReference = ref.child("categories").child(choice).child(uid)
+                    choiceReference.setValue(1)
+                    let journalReference = ref.child("user-categories").child(uid).child(choice)
+                    journalReference.setValue(1)
                 }
                 usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
 
@@ -147,11 +145,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
 
                     self.finishRegister()
                 })
-                for choice in self.userAnswer[0] {
-                    let choiceReference = ref.child("answers").child(choice).child(uid)
-                    choiceReference.setValue(1)
-                }
-            })
+
         }
     
     func isValidEmail(testStr:String) -> Bool {
