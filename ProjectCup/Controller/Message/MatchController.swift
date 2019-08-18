@@ -49,11 +49,11 @@ class MatchController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let useranswerRef = Database.database().reference().child("users").child(uid).child("user_answer")
-        useranswerRef.child("\(1)").observeSingleEvent(of: .value, with: { (snapshot) in
+        let useranswerRef = Database.database().reference().child("user-categories").child(uid)
+        useranswerRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let answer = snapshot.value!
-            let answerRef = Database.database().reference().child("answers").child("\(answer)")
+            let answer = snapshot.key
+            let answerRef = Database.database().reference().child("categories").child(answer)
             answerRef.observe(.childAdded, with: { (snapshot) in
                 
                 let userMatch = snapshot.key
