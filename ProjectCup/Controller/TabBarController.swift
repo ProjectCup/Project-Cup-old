@@ -1,11 +1,3 @@
-//
-//  MainPageController.swift
-//  ProjectCup
-//
-//  Created by Jiatao Xu on 3/1/19.
-//  Copyright © 2019 xyy. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Firebase
@@ -21,27 +13,26 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         view.backgroundColor = UIColor.blue
         createTabBarController()
         checkIfUserIsLoggedIn()
-        setupaddButton()
         selectedIndex = 0
 //        self.tabBarButtonZoomedOut()
     }
     
-    func setupaddButton() {
-    menuButton = UIButton(type: .custom)
-    menuButton.setImage(UIImage(named: "New chat"), for: .normal)
-    menuButton.tintColor = UIColor.blue
-    menuButton.backgroundColor = UIColor.white
-        
-    menuButton.translatesAutoresizingMaskIntoConstraints = false
-    menuButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-    menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor).isActive = true
-    
-    tabBar.addSubview(menuButton)
-    menuButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
-    menuButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor).isActive = true
-    
-
-}
+//    func setupaddButton() {
+//    menuButton = UIButton(type: .custom)
+//    menuButton.setImage(UIImage(named: "New chat"), for: .normal)
+//    menuButton.tintColor = UIColor.blue
+//    menuButton.backgroundColor = UIColor.white
+//        
+//    menuButton.translatesAutoresizingMaskIntoConstraints = false
+//    menuButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+//    menuButton.heightAnchor.constraint(equalTo: menuButton.widthAnchor).isActive = true
+//    
+//    tabBar.addSubview(menuButton)
+//    menuButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
+//    menuButton.centerYAnchor.constraint(equalTo: tabBar.centerYAnchor).isActive = true
+//    
+//
+//}
 ////        homeButton = UIButton(frame: CGRect(x: 10, y: 0, width: 45, height: 45))
 ////        var homeButtonFrame = homeButton.frame
 ////        homeButtonFrame.origin.x = view.bounds.width/2 - homeButtonFrame.size.width/2
@@ -67,10 +58,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         secondnavigationController.title = "Mood"
         secondnavigationController.tabBarItem = UITabBarItem.init(title: "Mood", image: UIImage(named: "Messages"), tag: 2)
         
-        let matchController = AddController()
-        let midnavigationController = UINavigationController(rootViewController: matchController)
-        midnavigationController.title = ""
-
         
         let messagesController = MessagesController()
         let thirdnavigationController = UINavigationController(rootViewController: messagesController)
@@ -84,11 +71,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
         
         
-        viewControllers = [firstnavigationController, secondnavigationController, midnavigationController, thirdnavigationController,fourthnavigationController]
-        for tabBarItem in tabBar.items! {
-            tabBarItem.title = ""
-            tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-        }
+        viewControllers = [firstnavigationController, secondnavigationController, thirdnavigationController,fourthnavigationController]
+//        for tabBarItem in tabBar.items! {
+//            tabBarItem.title = ""
+//            tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+//        }
 //        self.view.addSubview(tbController.view)
         
         
