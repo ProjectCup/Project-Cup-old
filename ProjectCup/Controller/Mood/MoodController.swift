@@ -48,16 +48,10 @@ class MoodController: UIViewController{
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
-        let ref = Database.database().reference().child("Journal").child(uid)
+        let ref = Database.database().reference().child("journal").child(uid)
         ref.observe(.childAdded, with: { (snapshot) in
             let jnlId = snapshot.key
-//            if let journalId = snapshot.value as? [String: AnyObject] {
-//                let jnl = MoodJournal(dictionary: journalId)
-//                jnl.journalId = snapshot.key
-//                self.journals.append(jnl)
-//            }
-            
-            let journalReference = Database.database().reference().child("Journal").child(uid).child(jnlId)
+            let journalReference = Database.database().reference().child("journal").child(uid).child(jnlId)
             
             journalReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -122,7 +116,6 @@ class MoodController: UIViewController{
 extension MoodController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(journals.count)
         return journals.count
     }
     
@@ -138,7 +131,7 @@ extension MoodController: UITableViewDataSource, UITableViewDelegate {
         print("Selected mood was \(selectedEntry.mood)")
         
         let addmoodController = AddMoodController()
-        addmoodController.textField.text = selectedEntry.journal
+        addmoodController.textField.text = selectedEntry.journalText
         addmoodController.mood = selectedEntry.mood
         addmoodController.journalId = selectedEntry.journalId
         addmoodController.dateinputField.text = selectedEntry.time
@@ -155,10 +148,10 @@ extension MoodController: UITableViewDataSource, UITableViewDelegate {
             }
             
             let journal = journals[indexPath.row]
-            let ref = Database.database().reference().child("Journal").child(uid)
+            let ref = Database.database().reference().child("journal").child(uid)
             ref.observe(.childAdded, with: { (snapshot) in
                 let journalId = journal.journalId
-                let journalReference = Database.database().reference().child("Journal").child(uid).child(journalId!)
+                let journalReference = Database.database().reference().child("journal").child(uid).child(journalId!)
                 journalReference.removeValue(completionBlock: { (error, ref) in
                     
                     if error != nil {
