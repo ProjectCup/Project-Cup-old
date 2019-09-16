@@ -7,21 +7,15 @@
 //
 
 import UIKit
-
-protocol savemoodDelegate {
-    func savemood(mood: MoodEntry.Mood!, date: Date!, at: Int?, isEditingEntry: Bool!, moodStory: String?)
-}
+import Firebase
 
 class AddMoodController: UIViewController {
     
     //MARK: Properties
-    
-    var delegate: savemoodDelegate?
-    var date: Date!
-    var mood: MoodEntry.Mood!
-    var indexrow: Int?
-    var moodStory: String?
-    var isEditingEntry:Bool! = false
+    var mood: String?
+    var journalText: String?
+    var isEditingEntry = false
+    var journalId: String?
     let moodController = MoodController()
     
     var buttonAmazing: UIButton = {
@@ -34,7 +28,7 @@ class AddMoodController: UIViewController {
         button.layer.cornerRadius = 25
         button.tag = 0
         button.addTarget(self, action: #selector(pressMood(_:)), for: .touchUpInside)
-
+        
         return button
     }()
     var buttonGood: UIButton = {
@@ -86,7 +80,7 @@ class AddMoodController: UIViewController {
         button.layer.cornerRadius = 25
         button.tag = 4
         button.addTarget(self, action: #selector(pressMood(_:)), for: .touchUpInside)
-
+        
         return button
     }()
     
@@ -105,10 +99,17 @@ class AddMoodController: UIViewController {
         return tf
     }()
     
+    var dateinputField: UITextField = {
+       let tf = UITextField()
+        tf.placeholder = "Please select the date"
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.clearButtonMode = .whileEditing
+       return tf
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateUI()
         view.addSubview(buttonAmazing)
         view.addSubview(buttonGood)
         view.addSubview(buttonNeutral)
@@ -116,67 +117,29 @@ class AddMoodController: UIViewController {
         view.addSubview(buttonTerrible)
         
         view.addSubview(textField)
-        view.addSubview(datePicker)
+        view.addSubview(dateinputField)
+        dateinputField.inputView = datePicker
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
         
         setNaviBarItems()
         settextField()
         setupButtons()
         setupDatePicker()
+        updateMood()
         view.backgroundColor = UIColor.yellow
         
-        }
+    }
     
-    func updateUI() {
-        updateMood(to: mood)
-        datePicker.date = date
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @objc func datePickerDidChangeValue(_ sender: UIDatePicker) {
-        date = datePicker.date
-    }
-    
-    private func updateMood(to newMood: MoodEntry.Mood) {
-        let unselectedColor = UIColor.white
-        switch newMood {
-        case .none:
-            buttonAmazing.backgroundColor = unselectedColor
-            buttonGood.backgroundColor = unselectedColor
-            buttonNeutral.backgroundColor = unselectedColor
-            buttonBad.backgroundColor = unselectedColor
-            buttonTerrible.backgroundColor = unselectedColor
-        case .amazing:
-            buttonAmazing.backgroundColor = newMood.colorValue
-            buttonGood.backgroundColor = unselectedColor
-            buttonNeutral.backgroundColor = unselectedColor
-            buttonBad.backgroundColor = unselectedColor
-            buttonTerrible.backgroundColor = unselectedColor
-        case .good:
-            buttonAmazing.backgroundColor = unselectedColor
-            buttonGood.backgroundColor = newMood.colorValue
-            buttonNeutral.backgroundColor = unselectedColor
-            buttonBad.backgroundColor = unselectedColor
-            buttonTerrible.backgroundColor = unselectedColor
-        case .neutral:
-            buttonAmazing.backgroundColor = unselectedColor
-            buttonGood.backgroundColor = unselectedColor
-            buttonNeutral.backgroundColor = newMood.colorValue
-            buttonBad.backgroundColor = unselectedColor
-            buttonTerrible.backgroundColor = unselectedColor
-        case .bad:
-            buttonAmazing.backgroundColor = unselectedColor
-            buttonGood.backgroundColor = unselectedColor
-            buttonNeutral.backgroundColor = unselectedColor
-            buttonBad.backgroundColor = newMood.colorValue
-            buttonTerrible.backgroundColor = unselectedColor
-        case .terrible:
-            buttonAmazing.backgroundColor = unselectedColor
-            buttonGood.backgroundColor = unselectedColor
-            buttonNeutral.backgroundColor = unselectedColor
-            buttonBad.backgroundColor = unselectedColor
-            buttonTerrible.backgroundColor = newMood.colorValue
-        }
-        
-        mood = newMood
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        dateinputField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
     }
     
     func setupDatePicker() {
@@ -215,18 +178,58 @@ class AddMoodController: UIViewController {
     }
     
     
+    @objc func handledone() {
+
+        guard let uid = Auth.auth().currentUser?.uid
+            else {
+                return
+        }
+        if isEditingEntry == false {
+            let ref = Database.database().reference().child("journal").child(uid)
+            let journalid = ref.childByAutoId()
+            let values = ["journalText": textField.text!, "mood": mood!, "time": dateinputField.text!] as [String : Any]
+            
+            journalid.updateChildValues(values) { (error, ref) in
+                if error != nil {
+                    print(error ?? "")
+                    return
+                }
+            }
+        } else {
+            let jnlid = journalId
+            let ref = Database.database().reference().child("journal").child(uid).child(jnlid!)
+            let values = ["journalText": textField.text!, "mood": mood!, "time": dateinputField.text!] as [String : Any]
+            
+            ref.updateChildValues(values) { (error, ref) in
+                if error != nil {
+                    print(error ?? "")
+                    return
+                }
+            }
+        }
+
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func pressMood(_ button: UIButton) {
         switch button.tag {
         case 0:
-            updateMood(to: .amazing)
+            print("amazing")
+            mood = "Amazing"
+            return updateMood()
         case 1:
-            updateMood(to: .good)
+            print("good")
+            mood = "Good"
+            return updateMood()
         case 2:
-            updateMood(to: .neutral)
+            mood = "Neutral"
+            return updateMood()
         case 3:
-            updateMood(to: .bad)
+            mood = "Bad"
+            return updateMood()
         case 4:
-            updateMood(to: .terrible)
+            mood = "Terrible"
+            return updateMood()
         default:
             
             //NOTE: error handling
@@ -234,10 +237,53 @@ class AddMoodController: UIViewController {
         }
     }
     
-    @objc func handledone() {
-        let moodStory = textField.text
-        delegate?.savemood(mood: mood, date: date, at: indexrow, isEditingEntry: isEditingEntry, moodStory: moodStory)
+    private func updateMood() {
+        let unselectedColor = UIColor.white
+        switch mood {
+        case .none:
+            buttonAmazing.backgroundColor = unselectedColor
+            buttonGood.backgroundColor = unselectedColor
+            buttonNeutral.backgroundColor = unselectedColor
+            buttonBad.backgroundColor = unselectedColor
+            buttonTerrible.backgroundColor = unselectedColor
+        case "Amazing":
+            buttonAmazing.backgroundColor = UIColor.green
+            buttonGood.backgroundColor = unselectedColor
+            buttonNeutral.backgroundColor = unselectedColor
+            buttonBad.backgroundColor = unselectedColor
+            buttonTerrible.backgroundColor = unselectedColor
+        case "Good":
+            buttonAmazing.backgroundColor = unselectedColor
+            buttonGood.backgroundColor = UIColor.blue
+            buttonNeutral.backgroundColor = unselectedColor
+            buttonBad.backgroundColor = unselectedColor
+            buttonTerrible.backgroundColor = unselectedColor
+        case "Neutral":
+            buttonAmazing.backgroundColor = unselectedColor
+            buttonGood.backgroundColor = unselectedColor
+            buttonNeutral.backgroundColor = UIColor.yellow
+            buttonBad.backgroundColor = unselectedColor
+            buttonTerrible.backgroundColor = unselectedColor
+        case "Bad":
+            buttonAmazing.backgroundColor = unselectedColor
+            buttonGood.backgroundColor = unselectedColor
+            buttonNeutral.backgroundColor = unselectedColor
+            buttonBad.backgroundColor = UIColor.orange
+            buttonTerrible.backgroundColor = unselectedColor
+        case "Terrible":
+            buttonAmazing.backgroundColor = unselectedColor
+            buttonGood.backgroundColor = unselectedColor
+            buttonNeutral.backgroundColor = unselectedColor
+            buttonBad.backgroundColor = unselectedColor
+            buttonTerrible.backgroundColor = UIColor.red
+        default:
+            print("nothing")
+        }
+        
+        
     }
+    
+    
     
     private func setNaviBarItems() {
         //right bar item
@@ -254,15 +300,11 @@ class AddMoodController: UIViewController {
         
         let cancelItem = navigationItem.backBarButtonItem
         self.navigationItem.leftBarButtonItem = cancelItem
-        
     }
     
-
     var tfHeightAnchor: NSLayoutConstraint?
-    
-    
+    var dfHeightAnchor: NSLayoutConstraint?
     func settextField() {
-        
         textField.backgroundColor = UIColor.white
         textField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         textField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -270,6 +312,13 @@ class AddMoodController: UIViewController {
         tfHeightAnchor = textField.heightAnchor.constraint(equalToConstant: 100)
         tfHeightAnchor?.isActive = true
         
+        dateinputField.backgroundColor = UIColor.white
+        dateinputField.leftAnchor.constraint(equalTo: textField.leftAnchor).isActive = true
+        dateinputField.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20).isActive = true
+        dateinputField.widthAnchor.constraint(equalTo: textField.widthAnchor).isActive = true
+        dfHeightAnchor = dateinputField.heightAnchor.constraint(equalToConstant: 50)
+        dfHeightAnchor?.isActive = true
     }
-
+    
 }
+
