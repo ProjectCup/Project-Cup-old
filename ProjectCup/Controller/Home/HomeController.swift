@@ -8,14 +8,11 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var array = ["1",
-                 "2",
-                 "3",
-                 "4",
-                 "5"]
+    var articles = ["1", "2"]
     
     
     override func viewDidLoad() {
@@ -29,6 +26,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
         
         setNaviBaritems()
+//        getArticle()
 
     }
     
@@ -36,15 +34,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         navigationItem.titleView = UIImageView(image: UIImage(named: "cupv1"))
         
-        let settingButton = UIButton(type: .system)
-        settingButton.setImage(UIImage(named: "Setting"), for: .normal)
-        settingButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        settingButton.addTarget(self, action: #selector(gotoSetting), for: .touchUpInside)
-        
-        let settingBarItem = UIBarButtonItem(customView: settingButton)
-        settingBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        settingBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        self.navigationItem.leftBarButtonItem = settingBarItem
+//        let settingButton = UIButton(type: .system)
+//        settingButton.setImage(UIImage(named: "Setting"), for: .normal)
+//        settingButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+//        settingButton.addTarget(self, action: #selector(gotoSetting), for: .touchUpInside)
+//
+//        let settingBarItem = UIBarButtonItem(customView: settingButton)
+//        settingBarItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+//        settingBarItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+//        self.navigationItem.leftBarButtonItem = settingBarItem
 
     }
     
@@ -64,13 +62,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return array.count
+        return articles.count
     }
 
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeCell
-        cell.image = UIImage(named: array[indexPath.row])
+        cell.image = UIImage(named: articles[indexPath.row])
         return cell
     }
     
@@ -84,15 +82,25 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let content = ContentController()
-        content.article = array[indexPath.row]
+        content.article = articles[indexPath.row]
         
         self.navigationController?.pushViewController(content, animated: true)
     }
     
-    @objc func gotoSetting(){
-        let settingController = SettingController()
-        let navController = UINavigationController(rootViewController: settingController)
-        present(navController, animated: true, completion: nil)
-    }
+//    @objc func gotoSetting(){
+//        let settingController = SettingController()
+//        let navController = UINavigationController(rootViewController: settingController)
+//        present(navController, animated: true, completion: nil)
+//    }
+    
+//    func getArticle() {
+//        let ref = Database.database().reference().child("Article").child("article")
+//        ref.observe(.childAdded, with: { snapshot in
+//                let dictionary = snapshot.value as? String
+//            self.articles.append(dictionary!)
+//
+//            })
+//
+//    }
     
 }
