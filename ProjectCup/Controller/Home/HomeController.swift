@@ -18,12 +18,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         setupCollectionView()
         
-        collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
+        
         
         setNaviBaritems()
 //        getArticle()
