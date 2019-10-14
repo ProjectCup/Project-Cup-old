@@ -68,10 +68,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let fourthnavigationController = UINavigationController(rootViewController: settingController)
         fourthnavigationController.title = "Setting"
         fourthnavigationController.tabBarItem = UITabBarItem.init(title: "Setting", image: UIImage(named: "Setting"), tag: 5)
-
         
+        let chagePreflayout = UICollectionViewFlowLayout()
+        chagePreflayout.scrollDirection = .vertical
+        let changePrefController = ChangePrefViewController(collectionViewLayout: chagePreflayout)
+        let fifthnavigationController = UINavigationController(rootViewController: changePrefController)
+        fifthnavigationController.title = "Change Topics"
+        fifthnavigationController.tabBarItem = UITabBarItem.init(title: "Change Topics", image: UIImage(named: "Setting"), tag: 3)
         
-        viewControllers = [firstnavigationController, secondnavigationController, thirdnavigationController,fourthnavigationController]
+        viewControllers = [firstnavigationController, secondnavigationController, thirdnavigationController,fourthnavigationController, fifthnavigationController]
 //        for tabBarItem in tabBar.items! {
 //            tabBarItem.title = ""
 //            tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)

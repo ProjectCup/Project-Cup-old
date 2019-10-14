@@ -39,11 +39,13 @@
 		BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8F94D1220F87530056F5DB /* ChangeController.swift */; };
 		BBB65B9A229ED2BC007C5CA0 /* AddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65B99229ED2BC007C5CA0 /* AddController.swift */; };
 		BBB65BB022A832E3007C5CA0 /* AddMoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BAF22A832E3007C5CA0 /* AddMoodController.swift */; };
-		BBB65BBA22AAE119007C5CA0 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BB922AAE119007C5CA0 /* Mood.swift */; };
 		BBB65BBC22AAE323007C5CA0 /* MoodEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */; };
 		C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAD22246D7C0005E54D /* SwipingController.swift */; };
 		C86E8AB022246D7D0005E54D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E8AAE22246D7D0005E54D /* PageCell.swift */; };
+		C8CF90612350508500EBB39E /* MoodJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF90602350508500EBB39E /* MoodJournal.swift */; };
+		C8CF9063235056D200EBB39E /* ChangePref.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF9062235056D200EBB39E /* ChangePref.swift */; };
 		C8E1242B22E802DF0040FC24 /* FlipboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */; };
+		C8E9145B2352DB8C00DE4626 /* UserChoices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E9145A2352DB8C00DE4626 /* UserChoices.swift */; };
 		DA4EA3A6CEADCA64E403993D /* Pods_ProjectCupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,12 +109,14 @@
 		BB8F94D1220F87530056F5DB /* ChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeController.swift; sourceTree = "<group>"; };
 		BBB65B99229ED2BC007C5CA0 /* AddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddController.swift; sourceTree = "<group>"; };
 		BBB65BAF22A832E3007C5CA0 /* AddMoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoodController.swift; sourceTree = "<group>"; };
-		BBB65BB922AAE119007C5CA0 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		BBB65BBB22AAE323007C5CA0 /* MoodEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryTableViewCell.swift; sourceTree = "<group>"; };
 		C33E2374155FAF5F8728094A /* Pods-ProjectCup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectCup.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectCup/Pods-ProjectCup.release.xcconfig"; sourceTree = "<group>"; };
 		C86E8AAD22246D7C0005E54D /* SwipingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		C86E8AAE22246D7D0005E54D /* PageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		C8CF90602350508500EBB39E /* MoodJournal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodJournal.swift; sourceTree = "<group>"; };
+		C8CF9062235056D200EBB39E /* ChangePref.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePref.swift; sourceTree = "<group>"; };
 		C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipboardViewController.swift; sourceTree = "<group>"; };
+		C8E9145A2352DB8C00DE4626 /* UserChoices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChoices.swift; sourceTree = "<group>"; };
 		CBF8664AF8352A4D11B9F02F /* Pods_ProjectCupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE08F0D286D2E5960B63C640 /* Pods_ProjectCupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectCupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -263,9 +267,10 @@
 		BB30032021FD3DC7009D7519 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C8CF90602350508500EBB39E /* MoodJournal.swift */,
 				BB30032121FD3DD4009D7519 /* User.swift */,
-				BBB65BB922AAE119007C5CA0 /* Mood.swift */,
 				BB0D29C9220E32CE00202DE0 /* Message.swift */,
+				C8E9145A2352DB8C00DE4626 /* UserChoices.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		C86E8AB322246DEA0005E54D /* Intro_pages */ = {
 			isa = PBXGroup;
 			children = (
+				C8CF9062235056D200EBB39E /* ChangePref.swift */,
 				C8E1242A22E802DF0040FC24 /* FlipboardViewController.swift */,
 				C86E8AAD22246D7C0005E54D /* SwipingController.swift */,
 				C86E8AAE22246D7D0005E54D /* PageCell.swift */,
@@ -600,10 +606,12 @@
 				BB3002DD21F42F50009D7519 /* AppDelegate.swift in Sources */,
 				BB0D29C6220E328400202DE0 /* ChatMessageCell.swift in Sources */,
 				C86E8AAF22246D7D0005E54D /* SwipingController.swift in Sources */,
+				C8CF90612350508500EBB39E /* MoodJournal.swift in Sources */,
 				C8E1242B22E802DF0040FC24 /* FlipboardViewController.swift in Sources */,
 				BB30032221FD3DD4009D7519 /* User.swift in Sources */,
 				BB8F94D2220F87530056F5DB /* ChangeController.swift in Sources */,
 				BB6F32B3226793F300952B76 /* MoodController.swift in Sources */,
+				C8E9145B2352DB8C00DE4626 /* UserChoices.swift in Sources */,
 				BB17C40B220885D8006C9623 /* UserDefault.swift in Sources */,
 				BB30030B21F42F91009D7519 /* RegisterController.swift in Sources */,
 				BB0D29CA220E32CE00202DE0 /* Message.swift in Sources */,
@@ -614,9 +622,9 @@
 				BB0D29C2220C991400202DE0 /* DeleteController.swift in Sources */,
 				BB17C40422079153006C9623 /* TermsController.swift in Sources */,
 				BB30031F21FD3BDE009D7519 /* MatchController.swift in Sources */,
+				C8CF9063235056D200EBB39E /* ChangePref.swift in Sources */,
 				BB0D29BF220A14CD00202DE0 /* FAQController.swift in Sources */,
 				BBB65BBC22AAE323007C5CA0 /* MoodEntryTableViewCell.swift in Sources */,
-				BBB65BBA22AAE119007C5CA0 /* Mood.swift in Sources */,
 				BBB65B9A229ED2BC007C5CA0 /* AddController.swift in Sources */,
 				BB0D29C8220E32A000202DE0 /* UserCell.swift in Sources */,
 				BB56BFCF2239914F00B667B4 /* Content.swift in Sources */,

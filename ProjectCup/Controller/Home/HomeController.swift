@@ -18,13 +18,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         setupCollectionView()
         
-        collectionView?.register(HomeCell.self, forCellWithReuseIdentifier: "cellId")
         
+
         setNaviBaritems()
 //        getArticle()
 
@@ -67,6 +67,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HomeCell
         cell.image = UIImage(named: articles[indexPath.row])
         return cell
