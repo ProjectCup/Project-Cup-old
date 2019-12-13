@@ -159,10 +159,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     func finishRegister() {
         let tabbarController = TabBarController()
+        tabbarController.modalPresentationStyle = .fullScreen
         present(tabbarController, animated: true, completion: nil)
         
         UserDefaults.standard.setIsLoggedIn(value: true)
-        }
+    }
     
     let emailTextField: UITextField = {
         let tf = UITextField()
