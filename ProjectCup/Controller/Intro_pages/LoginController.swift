@@ -251,6 +251,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     func finishLoggingIn() {
         let tabbarController = TabBarController()
+        tabbarController.modalPresentationStyle = .fullScreen
         present(tabbarController, animated: true, completion: nil)
         UserDefaults.standard.setIsLoggedIn(value: true)
     }
