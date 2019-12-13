@@ -44,6 +44,7 @@ class MoodController: UIViewController{
         }
     }
     
+    
     func observerJournal() {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -123,6 +124,7 @@ extension MoodController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MoodEntryTableViewCell
         let journal = journals[indexPath.row]
         cell.moodjournal = journal
+        cell.profileImageView.image = UIImage(named: "cupv1")
         return cell
     }
     
@@ -166,6 +168,10 @@ extension MoodController: UITableViewDataSource, UITableViewDelegate {
             break
         }
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     
     fileprivate func attemptReloadOfTable() {
         self.timer?.invalidate()
