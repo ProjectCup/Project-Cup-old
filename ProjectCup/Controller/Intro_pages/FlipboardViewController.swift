@@ -272,13 +272,26 @@ class buttonView: UIViewController{
     
     var ActivateButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
+        button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
         button.setTitle("Ready !", for: UIControl.State())
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.black, for: UIControl.State())
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(onTap), for: .touchUpInside)
+        return button
+    }()
+    
+    var BackButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
+        button.setTitle("Back", for: UIControl.State())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.black, for: UIControl.State())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+
         return button
     }()
     
@@ -290,7 +303,7 @@ class buttonView: UIViewController{
         nameField.hero.id = "batMan"
         view.addSubview(nameField)
         view.addSubview(ActivateButton)
-
+        view.addSubview(BackButton)
         
     }
     
@@ -300,6 +313,8 @@ class buttonView: UIViewController{
         nameField.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY - 90)
         ActivateButton.frame.size = CGSize(width: 170, height: 60)
         ActivateButton.center = CGPoint(x: view.bounds.midX, y:view.bounds.midY)
+        BackButton.frame.size = CGSize(width: 170, height: 60)
+        BackButton.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY + 70)
     }
     
     
@@ -315,4 +330,18 @@ class buttonView: UIViewController{
         vc2.hero.isEnabled = true
         present(vc2, animated: true, completion: nil)
     }
+    
+    @objc func goBack() {
+
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let swipingController = SwipingController(collectionViewLayout: layout)
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        
+        mainNavigationController.viewControllers = [swipingController]
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

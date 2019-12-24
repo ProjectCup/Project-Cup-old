@@ -26,7 +26,7 @@ class MatchController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleCancel))
         
         fetchUser()
         
@@ -35,12 +35,19 @@ class MatchController: UIViewController, UITextFieldDelegate {
         view.addSubview(matchNameLabel)
         view.addSubview(inputsContainerView)
         view.addSubview(ContinueButton)
+        view.addSubview(EditButton)
+        view.addSubview(preferenceLabel)
         
         firstMessageTextField.delegate = self
         
         setupMatchNameLabel()
         setupInputsContainerView()
         setupContinueButton()
+        setupPreferenceLabel()
+        setupEditButton()
+        
+        fetchPref(preflabel: preferenceLabel)
+        
     }
     
     
@@ -72,6 +79,24 @@ class MatchController: UIViewController, UITextFieldDelegate {
     }
     
     
+    func fetchPref(preflabel: UILabel){
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let useranswerRef = Database.database().reference().child("user-categories").child(uid)
+        useranswerRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            var words: [String] = []
+            for child in snapshot.children{
+                let snap = child as! DataSnapshot
+                words.append(snap.key)
+            }
+            preflabel.text = "Here is the list of the topic you preferred:\n" + words.joined(separator: ",")
+        }, withCancel: nil)
+        
+        return
+    }
+    
     @objc func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
@@ -81,6 +106,17 @@ class MatchController: UIViewController, UITextFieldDelegate {
         let label = UILabel()
         label.text = "We found a match for you"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+    
+    let preferenceLabel: UILabel = {
+        let label = UILabel()
+        label.text = " "
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
@@ -109,16 +145,39 @@ class MatchController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    var EditButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(r: 171, g: 234, b: 190)
+        button.setTitle("Edit Preference", for: UIControl.State())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.black, for: UIControl.State())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.layer.cornerRadius = 25
+        
+        button.addTarget(self, action: #selector(handleEdit), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
     var firstMessageTextFieldHeightAnchor: NSLayoutConstraint?
+
+    func setupPreferenceLabel() {
+        //need x, y, width, height constraints
+        preferenceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        preferenceLabel.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
+        preferenceLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
+    }
     
     func setupMatchNameLabel() {
         //need x, y, width, height constraints
         matchNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        matchNameLabel.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
+        matchNameLabel.bottomAnchor.constraint(equalTo: preferenceLabel.topAnchor, constant: -12).isActive = true
         matchNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
     }
+
     
     func setupInputsContainerView() {
         //need x, y, width, height constraints
@@ -147,12 +206,30 @@ class MatchController: UIViewController, UITextFieldDelegate {
         ContinueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
+    func setupEditButton() {
+        //need x, y, width, height constraints
+        EditButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        EditButton.topAnchor.constraint(equalTo: ContinueButton.bottomAnchor, constant: 12).isActive = true
+        EditButton.widthAnchor.constraint(equalTo: matchNameLabel.widthAnchor).isActive = true
+        EditButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
     
     
     
     
     
     var messagesController: MessagesController?
+    
+    @objc func handleEdit() {
+        let chagePreflayout = UICollectionViewFlowLayout()
+        chagePreflayout.scrollDirection = .vertical
+        let changePrefController = ChangePrefViewController(collectionViewLayout: chagePreflayout)
+        let navController = UINavigationController(rootViewController: changePrefController)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
+        
+    }
     
     @objc func handleContinue() {
         dismiss(animated: true) {

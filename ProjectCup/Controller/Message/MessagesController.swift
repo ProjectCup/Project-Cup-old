@@ -292,6 +292,7 @@ class MessagesController: UITableViewController {
         
         newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
+        navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true, completion: nil)
     }
     

@@ -29,6 +29,7 @@ class MainNavigationController: UINavigationController {
     
     @objc func showTabbar(){
         let tabbarController = TabBarController()
+        tabbarController.modalPresentationStyle = .fullScreen
         present(tabbarController, animated: true, completion: nil)
     }
     
@@ -36,7 +37,9 @@ class MainNavigationController: UINavigationController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
-        viewControllers = [swipingController]
+        //viewControllers = [swipingController]
+        swipingController.modalPresentationStyle = .fullScreen
+        present(swipingController, animated: true, completion: nil)
     }
     
 }

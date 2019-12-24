@@ -127,7 +127,7 @@ DEPENDENCIES:
   - ViewAnimator
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - BoringSSL
     - Firebase
     - FirebaseAnalytics
@@ -173,4 +173,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1d407412a8e5ae015f6aa582b2977abcc048cbb0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

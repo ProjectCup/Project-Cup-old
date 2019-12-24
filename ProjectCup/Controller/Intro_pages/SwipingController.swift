@@ -59,6 +59,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
 //        let nameController = UINavigationController(rootViewController: NameController())
 //        self.present(nameController, animated: true, completion: nil)
         let vc = buttonView()
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
@@ -74,12 +75,8 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     }()
     
     @objc private func handleLogin(){
-        
-//        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
-//        let indexPath = IndexPath(item: nextIndex, section: 0)
-//        pageControl.currentPage = nextIndex
-//        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        let loginController = UINavigationController(rootViewController: LoginController())
+        let loginController = LoginController()
+        loginController.modalPresentationStyle = .fullScreen
         present(loginController, animated: true, completion: nil)
     }
     

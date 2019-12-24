@@ -43,7 +43,6 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.title = "Settings"
         navigationController?.navigationBar.backgroundColor = UIColor.green
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
         let footerView = UIView()
         footerView.addSubview(LogoutButton)
@@ -68,7 +67,7 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.frame = CGRect(x: 0, y: 10, width: self.view.frame.width, height: self.view.frame.height)
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: LogoutButton.topAnchor, constant: 100).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: LogoutButton.topAnchor, constant: 300).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
@@ -79,7 +78,7 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
         //need x, y, width, height constraints
         LogoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         LogoutButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 12).isActive = true
-        LogoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        //LogoutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         LogoutButton.widthAnchor.constraint(equalTo: tableView.widthAnchor, constant: -24).isActive = true
         LogoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
@@ -238,11 +237,13 @@ class SettingController : UIViewController, UITableViewDelegate, UITableViewData
     
     func finishLogout() {
         //change locally the login status of the user
-        UserDefaults.standard.set(false, forKey: "status")
+        //UserDefaults.standard.set(false, forKey: "status")
+        UserDefaults.standard.setIsLoggedIn(value: false)
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
+        swipingController.modalPresentationStyle = .fullScreen
         present(swipingController, animated: true, completion: nil)
                 
     }

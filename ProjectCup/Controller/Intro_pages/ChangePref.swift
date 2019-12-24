@@ -43,6 +43,8 @@ class ChangePrefViewController: UICollectionViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleCancel))
+        
         collectionView?.backgroundColor = .white
         collectionView?.register(MultiCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView?.allowsMultipleSelection = true
@@ -118,6 +120,10 @@ class ChangePrefViewController: UICollectionViewController, UICollectionViewDele
         
         let loginController = UINavigationController(rootViewController: LoginController())
         present(loginController, animated: true, completion: nil)
+    }
+    
+    @objc func handleCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func Confirm() {
