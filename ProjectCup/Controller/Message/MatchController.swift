@@ -50,6 +50,10 @@ class MatchController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // reload the text label whenever the choices are changed
+        fetchPref(preflabel: preferenceLabel)
+    }
     
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {

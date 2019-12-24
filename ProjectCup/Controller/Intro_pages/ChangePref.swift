@@ -149,6 +149,7 @@ class ChangePrefViewController: UICollectionViewController, UICollectionViewDele
                  }
                 self.choiceList.removeAll()
                 self.getChoices(uid: uid!)
+                self.showSimpleAlert()
             }
             
         }){(error) in
@@ -156,6 +157,16 @@ class ChangePrefViewController: UICollectionViewController, UICollectionViewDele
         }
 
         return
+    }
+    
+    private func showSimpleAlert() {
+        let alert = UIAlertController(title: "Success!", message: "Your topic preference has been changed successfully!",         preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: { _ in
+            //Cancel Action
+        }))
+
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func getCellSelection(){
