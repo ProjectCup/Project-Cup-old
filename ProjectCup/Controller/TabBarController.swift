@@ -57,7 +57,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let moodController = MoodController()
         let secondnavigationController = UINavigationController(rootViewController: moodController)
         secondnavigationController.title = "Mood"
-        secondnavigationController.tabBarItem = UITabBarItem.init(title: "Mood", image: UIImage(named: "Messages"), tag: 2)
+        secondnavigationController.tabBarItem = UITabBarItem.init(title: "Mood", image: UIImage(named: "Journal"), tag: 2)
 
         
         
