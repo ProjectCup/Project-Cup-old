@@ -37,10 +37,10 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     
     let pages = [
-        Page(imageName: "CUP logo", headerText: "CUP an app that resolves your misury", bodyText: "lalalalalalalal"),
-        Page(imageName: "CUP logo", headerText: "Register and get matched with the right person", bodyText: "Are you ready for loads and loads of fun?"),
-        Page(imageName: "CUP logo", headerText: "pay 5$ per month to become a VIP", bodyText:"you are not ready for loads and loads of talks, we will show you how to talk"),
-        Page(imageName: "CUP logo", headerText: "Trade drugs and hook up dates", bodyText:"I am tiered of making things up")
+        Page(imageName: "Swipe1", headerText: "Expressing helps", bodyText: "Feel bad? Talk to someone."),
+        Page(imageName: "Swipe2", headerText: "Share stories ", bodyText: "Tell your stories to people who have similar experiences"),
+        Page(imageName: "Swipe3", headerText: "Stay anonymously", bodyText:"Only the name you chose will be displayed to others"),
+        Page(imageName: "Swipe4", headerText: "Understand yourself", bodyText:"Track your feelings and discover the cause")
     ]
     
     private let registerButton: UIButton = {
